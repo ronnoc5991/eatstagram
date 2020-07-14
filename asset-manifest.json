@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/eatstagram-react/static/css/main.7282374c.chunk.css",
+    "main.js": "/eatstagram-react/static/js/main.17737847.chunk.js",
+    "main.js.map": "/eatstagram-react/static/js/main.17737847.chunk.js.map",
+    "runtime-main.js": "/eatstagram-react/static/js/runtime-main.ffce09e5.js",
+    "runtime-main.js.map": "/eatstagram-react/static/js/runtime-main.ffce09e5.js.map",
+    "static/js/2.c163988b.chunk.js": "/eatstagram-react/static/js/2.c163988b.chunk.js",
+    "static/js/2.c163988b.chunk.js.map": "/eatstagram-react/static/js/2.c163988b.chunk.js.map",
+    "index.html": "/eatstagram-react/index.html",
+    "precache-manifest.da5c8f8351a6251a28f9047d8e3fd952.js": "/eatstagram-react/precache-manifest.da5c8f8351a6251a28f9047d8e3fd952.js",
+    "service-worker.js": "/eatstagram-react/service-worker.js",
+    "static/css/main.7282374c.chunk.css.map": "/eatstagram-react/static/css/main.7282374c.chunk.css.map",
+    "static/js/2.c163988b.chunk.js.LICENSE.txt": "/eatstagram-react/static/js/2.c163988b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ffce09e5.js",
+    "static/js/2.c163988b.chunk.js",
+    "static/css/main.7282374c.chunk.css",
+    "static/js/main.17737847.chunk.js"
+  ]
+}
