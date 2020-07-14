@@ -2,9 +2,11 @@
   text-align: center;
   background-color: rgb(255, 255, 255);
   width: 100vw;
-  display: grid;
-  grid-template-rows: 10vh 90vh;
+  /* display: grid;
+  grid-template-rows: 10vh 90vh; */
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .header {
@@ -13,63 +15,79 @@
   background-color: rgb(251,251,251);
   height: 10vh;
   box-shadow: 0px 0px 3px 3px rgb(226, 226, 226);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+  overflow: hidden;
+  position: fixed;
+  width: 100vw;
+  z-index: 3;
 }
 
 .header div {
   align-self: center;
-  margin: auto;
-  transition: transform 200ms;
+  transition: transform 300ms;
   transform-origin: center;
 }
 
 .header div:hover {
   cursor: pointer;
-  transform: scale(1.1);
 }
 
 .logo {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  color: red;
+  margin-left: 40px;
+  margin-right: auto;
+  margin-top: 10px;
 }
 
 .logo img {
-  height: 70px;
+  height: 100%;
   pointer-events: none;
 }
 
-.home {
-  grid-column-start: 2;
-  grid-column-end: 3;
+.new-recipe {
+  margin-right: 40px;
+  color: rgb(148, 148, 148);
 }
 
-.new-recipe {
-  grid-column-start: 3;
-  grid-column-end: 4;
+.new-recipe:hover {
+  color: #C70017;
+  transform: rotate(90deg);
+}
+
+.home {
+  margin-right: 40px;
+  color: rgb(148, 148, 148);
+}
+
+.home:hover {
+  color: #C70017;
 }
 
 .log-in-out {
-  grid-column-start: 4;
-  grid-column-end: 5;
+  display: flex;
+  margin-right: 40px;
 }
 
-.home-view {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  height: 100%;
-  width: 100%;
+.current-display {
+  margin-top: 10vh;
+  width: 100vw;
+  overflow: hidden;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* -------------------- SIGNED-IN-USER -------------------- */
 
+.sign-in {
+  margin-right: 40px;
+  color: rgb(148, 148, 148);
+}
+
+.sign-in:hover {
+  color: #C70017;
+}
+
 .signed-in {
-  margin: auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  margin-right: 40px;
 }
 
 .user-name {
@@ -77,13 +95,24 @@
 }
 
 .user-pic {
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
-  margin: auto;
+  right: 15px;
 }
 
 /* -------------------- ADD NEW RECIPE -------------------- */
+
+.home-view {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  /* height: 100%; */
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-x: hidden;
+}
 
 .new-recipe-view {
   grid-row-start: 2;
@@ -142,7 +171,7 @@
   height: 420px; */
   width: 276px;
   height: 336px;
-  perspective: 1000px;
+  perspective: 600px;
   margin: 20px;
 }
 
@@ -177,7 +206,6 @@
   background-image: url("https://www.transparenttextures.com/patterns/cream-pixels.png");
   color: black;
   display: grid;
-  /* grid-template-rows: 346px 74px; */
   grid-template-rows: 277px 59px;
   text-align: center;
   border-radius: 2px;
@@ -191,6 +219,8 @@
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
 }
 
 .image-container {
@@ -201,6 +231,9 @@
   display: block;
   position: relative;
   overflow: hidden;
+  transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
 }
 
 .image-container img {
@@ -208,6 +241,9 @@
   top: -15%;
   left: 0;
   width: 100%;
+  transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
 }
 
 /* .recipe-card-front img {
