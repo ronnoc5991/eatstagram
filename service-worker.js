@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/eatstagram-react/precache-manifest.da5c8f8351a6251a28f9047d8e3fd952.js"
+  "/eatstagram-react/precache-manifest.f97caf2bea68551d23da1da0aa891e80.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,22 +1,26 @@
 {
   "files": {
-    "main.css": "/eatstagram-react/static/css/main.7282374c.chunk.css",
-    "main.js": "/eatstagram-react/static/js/main.17737847.chunk.js",
-    "main.js.map": "/eatstagram-react/static/js/main.17737847.chunk.js.map",
+    "main.css": "/eatstagram-react/static/css/main.321ede0e.chunk.css",
+    "main.js": "/eatstagram-react/static/js/main.f4e52c41.chunk.js",
+    "main.js.map": "/eatstagram-react/static/js/main.f4e52c41.chunk.js.map",
     "runtime-main.js": "/eatstagram-react/static/js/runtime-main.ffce09e5.js",
     "runtime-main.js.map": "/eatstagram-react/static/js/runtime-main.ffce09e5.js.map",
-    "static/js/2.c163988b.chunk.js": "/eatstagram-react/static/js/2.c163988b.chunk.js",
-    "static/js/2.c163988b.chunk.js.map": "/eatstagram-react/static/js/2.c163988b.chunk.js.map",
+    "static/css/2.b06b24e1.chunk.css": "/eatstagram-react/static/css/2.b06b24e1.chunk.css",
+    "static/js/2.b3132280.chunk.js": "/eatstagram-react/static/js/2.b3132280.chunk.js",
+    "static/js/2.b3132280.chunk.js.map": "/eatstagram-react/static/js/2.b3132280.chunk.js.map",
     "index.html": "/eatstagram-react/index.html",
-    "precache-manifest.da5c8f8351a6251a28f9047d8e3fd952.js": "/eatstagram-react/precache-manifest.da5c8f8351a6251a28f9047d8e3fd952.js",
+    "precache-manifest.f97caf2bea68551d23da1da0aa891e80.js": "/eatstagram-react/precache-manifest.f97caf2bea68551d23da1da0aa891e80.js",
     "service-worker.js": "/eatstagram-react/service-worker.js",
-    "static/css/main.7282374c.chunk.css.map": "/eatstagram-react/static/css/main.7282374c.chunk.css.map",
-    "static/js/2.c163988b.chunk.js.LICENSE.txt": "/eatstagram-react/static/js/2.c163988b.chunk.js.LICENSE.txt"
+    "static/css/2.b06b24e1.chunk.css.map": "/eatstagram-react/static/css/2.b06b24e1.chunk.css.map",
+    "static/css/main.321ede0e.chunk.css.map": "/eatstagram-react/static/css/main.321ede0e.chunk.css.map",
+    "static/js/2.b3132280.chunk.js.LICENSE.txt": "/eatstagram-react/static/js/2.b3132280.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.min.css": "/eatstagram-react/static/media/fontawesome-webfont.fee66e71.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.ffce09e5.js",
-    "static/js/2.c163988b.chunk.js",
-    "static/css/main.7282374c.chunk.css",
-    "static/js/main.17737847.chunk.js"
+    "static/css/2.b06b24e1.chunk.css",
+    "static/js/2.b3132280.chunk.js",
+    "static/css/main.321ede0e.chunk.css",
+    "static/js/main.f4e52c41.chunk.js"
   ]
 }
