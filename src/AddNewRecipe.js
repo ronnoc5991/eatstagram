@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
+// Firebase App (the core Firebase SDK) is always required and must be listed first
+import * as firebase from "firebase/app";
+// If you enabled Analytics in your project, add the Firebase SDK for Analytics
+import "firebase/analytics";
+// Add the Firebase products that you want to use
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
 
 const AddNewRecipe = () => {
 
     const [recipeTitle, setRecipeTitle] = useState('');    
     const [recipeDescription, setRecipeDescription] = useState('');
 
+
+    //I want the display to change to home Display upon Recipe Creation
+
     function createRecipe (e) {
         e.preventDefault();
         console.log(`Recipe Title: ${ recipeTitle }`)
         console.log(`Recipe Description: ${ recipeDescription }`)
+        saveRecipe(recipeTitle, recipeDescription);
         setRecipeTitle('');
         setRecipeDescription('');
+
     }
 
     function changeRecipeTitle (e) {
@@ -19,6 +32,26 @@ const AddNewRecipe = () => {
 
     function changeRecipeDescription (e) {
         setRecipeDescription(e.target.value);
+    }
+
+    function getUserName() {
+        return firebase.auth().currentUser.displayName;
+    }
+
+    function getProfilePicUrl() {
+        return firebase.auth().currentUser.photoURL;
+    }
+
+    function saveRecipe (title, description) {
+        return firebase.firestore().collection('recipes').add({
+            name: getUserName(),
+            title: title,
+            description: description,
+            profilePicUrl: getProfilePicUrl(),
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).catch(function(error) {
+            console.error('Error writing new message to database', error);
+        });
     }
 
     return (

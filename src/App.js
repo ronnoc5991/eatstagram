@@ -16,15 +16,37 @@ function App() {
 
   const [currentDisplay, setCurrentDisplay] = useState('home');  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     console.log('log in status changed')
   }, [isLoggedIn])
 
-  function changeView (e) {
-    console.log(`${ e.target.className }`)
-    setCurrentDisplay(e.target.className);
-  }
+  useEffect(() => {
+    console.log('Rendered')
+    if (currentDisplay === 'home') {
+      getRecipes();
+    }
+  }, [currentDisplay])
+
+
+  var recipesArray = [];
+
+  function getRecipes() {
+
+    recipesArray = [];
+
+    firebase.firestore().collection('recipes').get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        recipesArray.push(doc.data());
+    })
+    }).then (() => {
+        setRecipes(recipesArray);
+    });
+};
+
+
+
 
   function signIn () {
     console.log(firebase);
@@ -73,15 +95,16 @@ function App() {
     return !!firebase.auth().currentUser;
   }
 
+
   return (
     <div className="App">
       <header className="header">
-        <div className="logo" onClick={ changeView }>
+        <div className="logo" onClick={() => setCurrentDisplay('home') }>
           {/* <img src={ logo } alt="" className="logo-image"/> */}
           Eatstagram
         </div>
-        <div className="home" onClick={ changeView }>Home</div>
-        <div className="new-recipe" onClick={ changeView } display={ {viewChanger:[currentDisplay, setCurrentDisplay]} }>New Recipe</div>
+        <div className="home" onClick={() => setCurrentDisplay('home') }>Home</div>
+        <div className="new-recipe" onClick={() => setCurrentDisplay('new-recipe') }>New Recipe</div>
         <div className="log-in-out">
           { isLoggedIn ? 
             <div className="signed-in" onClick={ signOut }>
@@ -92,8 +115,8 @@ function App() {
         </div>
       </header>
       <div className="current-display"> 
-        { currentDisplay === 'logo' && <Home />}
-        { currentDisplay === 'home' && <Home />}
+        { currentDisplay === 'logo' && <Home recipeCollection={ recipes }/>}
+        { currentDisplay === 'home' && <Home recipeCollection={ recipes }/>}
         { currentDisplay === 'new-recipe' && <AddNewRecipe />}
       </div>
     </div>

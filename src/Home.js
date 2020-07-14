@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+// Firebase App (the core Firebase SDK) is always required and must be listed first
+import * as firebase from "firebase/app";
+// If you enabled Analytics in your project, add the Firebase SDK for Analytics
+import "firebase/analytics";
+// Add the Firebase products that you want to use
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
+import RecipeCard from './RecipeCard'
 
-const Home = () => {
-
-    //get recipes from the firebase database
-    //put the first 20 in an array
-    //loop over the array and create a recipe card for each recipe
-
+const Home = (props) => {
+  
     return (
         <div className="home-view">
-            Home
+            { props.recipeCollection.map((recipe, i) => {
+                return <RecipeCard recipe={ recipe } />
+            }) }
         </div>
     )
 }
