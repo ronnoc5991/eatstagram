@@ -100,8 +100,8 @@ function App() {
     <div className="App">
       <header className="header">
         <div className="logo" onClick={() => setCurrentDisplay('home') }>
-          {/* <img src={ logo } alt="" className="logo-image"/> */}
-          Eatstagram
+          <img src={ logo } alt="" className="logo-image"/>
+          {/* Eatstagram */}
         </div>
         <div className="home" onClick={() => setCurrentDisplay('home') }>Home</div>
         <div className="new-recipe" onClick={() => setCurrentDisplay('new-recipe') }>New Recipe</div>
@@ -124,3 +124,6 @@ function App() {
 }
 
 export default App;
+
+
+// need to create delete ability... only the user that created the recipe can delete the recipe

@@ -12,18 +12,17 @@ const AddNewRecipe = () => {
 
     const [recipeTitle, setRecipeTitle] = useState('');    
     const [recipeDescription, setRecipeDescription] = useState('');
+    const [recipePhoto, setRecipePhoto] = useState('');
 
 
     //I want the display to change to home Display upon Recipe Creation
 
     function createRecipe (e) {
         e.preventDefault();
-        console.log(`Recipe Title: ${ recipeTitle }`)
-        console.log(`Recipe Description: ${ recipeDescription }`)
-        saveRecipe(recipeTitle, recipeDescription);
+        saveRecipeWithImage(recipeTitle, recipeDescription, recipePhoto);
         setRecipeTitle('');
         setRecipeDescription('');
-
+        setRecipePhoto('')
     }
 
     function changeRecipeTitle (e) {
@@ -42,16 +41,47 @@ const AddNewRecipe = () => {
         return firebase.auth().currentUser.photoURL;
     }
 
-    function saveRecipe (title, description) {
-        return firebase.firestore().collection('recipes').add({
+    // function saveRecipe (title, description) {
+    //     return firebase.firestore().collection('recipes').add({
+    //         name: getUserName(),
+    //         title: title,
+    //         description: description,
+    //         profilePicUrl: getProfilePicUrl(),
+    //         timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    //     }).catch(function(error) {
+    //         console.error('Error writing new message to database', error);
+    //     });
+    // }
+
+    function handlePhotoChange (e) {
+        if (e.target.files[0]) {
+            const image = e.target.files[0];
+            console.log(image);
+            setRecipePhoto(image);
+        }
+    }
+
+    function saveRecipeWithImage (title, description, file) {
+        firebase.firestore().collection('recipes').add({
             name: getUserName(),
             title: title,
             description: description,
+            imageUrl: 'LOADING_IMAGE_URL',
             profilePicUrl: getProfilePicUrl(),
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(function(messageRef) {
+            var filePath = firebase.auth().currentUser.uid + '/' + messageRef.id + '/' + file.name;
+            return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
+                return fileSnapshot.ref.getDownloadURL().then((url) => {
+                    return messageRef.update({
+                        imageUrl: url,
+                        storageUri: fileSnapshot.metadata.fullPath
+                    });
+                });
+            });
         }).catch(function(error) {
-            console.error('Error writing new message to database', error);
-        });
+            console.error('There was an error uploading a file to Cloud Storage:', error);
+        })
     }
 
     return (
@@ -63,7 +93,7 @@ const AddNewRecipe = () => {
                 </label>
                 <label htmlFor="photo" className="form-photo" >
                     Photo:
-                    <input type="file" name="photo" autoComplete="off" />
+                    <input type="file" name="photo" autoComplete="off" onChange= { handlePhotoChange } />
                 </label>
                 <label htmlFor="description" className="form-description" >
                     Description:
@@ -72,8 +102,20 @@ const AddNewRecipe = () => {
                 <button onClick={ createRecipe } className="submit-button" >Create</button>
             </form>
 
-            <div className="draft-recipe-card-container">
-                <div className="draft-recipe-title"> {recipeTitle} </div>
+        <div className="draft-recipe-card-container">
+            <div class="display-card-demo">
+                <div class="display-card-front-demo">
+                    <img src={ recipePhoto } alt=""></img>
+                    <div class="front-text-demo"><h1> { recipeTitle } </h1></div>
+                </div>
+            </div>
+
+                <div class="display-card-demo">
+                    <div className="display-card-back-demo">
+                        <h1> { recipeTitle } </h1>
+                        <p> { recipeDescription } </p>
+                    </div>
+                </div>
             </div>
         </div>
     )
