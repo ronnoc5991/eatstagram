@@ -103,14 +103,19 @@ function App() {
           <img src={ logo } alt="" className="logo-image"/>
           {/* Eatstagram */}
         </div>
-        <div className="new-recipe" onClick={() => setCurrentDisplay('new-recipe') }><i class="fa fa-plus fa-2x"></i></div>
-        <div className="home" onClick={() => setCurrentDisplay('home') }><i class="fa fa-home fa-2x"></i></div>
+        <div className="new-recipe" onClick={() => setCurrentDisplay('new-recipe') }>
+          <div className="new-recipe-icon-container">
+            <i className="fa fa-camera fa-2x"></i>
+            <i className="fa fa-plus-circle"></i>
+          </div>
+        </div>
+        <div className="home" onClick={() => setCurrentDisplay('home') }><i className="fa fa-home fa-2x"></i></div>
         <div className="log-in-out">
           { isLoggedIn ? 
             <div className="signed-in" onClick={ signOut }>
               <img src={`${ getProfilePicUrl() }`} alt="Nothing" className="user-pic" />
             </div> :
-            <div className="sign-in" onClick={ signIn }><i class="fa fa-user fa-2x"></i></div>}
+            <div className="sign-in" onClick={ signIn }><i className="fa fa-user fa-2x"></i></div>}
         </div>
       </header>
       <div className="current-display"> 

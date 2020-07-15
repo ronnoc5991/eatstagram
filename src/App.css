@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: rgb(255, 255, 255);
-  width: 100vw;
+  width: 100%;
   /* display: grid;
   grid-template-rows: 10vh 90vh; */
   overflow-x: hidden;
@@ -10,8 +10,6 @@
 }
 
 .header {
-  grid-row-start: 1;
-  grid-row-end: 2;
   background-color: rgb(251,251,251);
   height: 10vh;
   box-shadow: 0px 0px 3px 3px rgb(226, 226, 226);
@@ -44,13 +42,27 @@
 }
 
 .new-recipe {
-  margin-right: 40px;
   color: rgb(148, 148, 148);
 }
 
 .new-recipe:hover {
   color: #C70017;
-  transform: rotate(90deg);
+}
+
+.new-recipe-icon-container {
+  margin-right: 40px;
+  width: 35px;
+  height: 32px;
+}
+
+.new-recipe-icon-container i{
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.fa-plus-circle {
+  color: rgb(251,251,251);
 }
 
 .home {
@@ -69,10 +81,10 @@
 
 .current-display {
   margin-top: 10vh;
-  width: 100vw;
+  width: 90vw;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* -------------------- SIGNED-IN-USER -------------------- */
@@ -101,18 +113,13 @@
   right: 15px;
 }
 
-/* -------------------- ADD NEW RECIPE -------------------- */
-
 .home-view {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  /* height: 100%; */
-  width: 90%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  overflow-x: hidden;
 }
+
+/* -------------------- ADD NEW RECIPE -------------------- */
 
 .new-recipe-view {
   grid-row-start: 2;
@@ -167,11 +174,9 @@
 
 .recipe-card {
   background-color: transparent;
-  /* width: 345px;
-  height: 420px; */
   width: 276px;
   height: 336px;
-  perspective: 600px;
+  perspective: 1000px;
   margin: 20px;
 }
 
@@ -228,12 +233,10 @@
   justify-self: center;
   width: 246px;
   height: 240px;
-  display: block;
+  background-color: transparent;
+  /* display: block; */
   position: relative;
   overflow: hidden;
-  transform: translate3d(0,0,0);
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
 }
 
 .image-container img {
@@ -241,8 +244,8 @@
   top: -15%;
   left: 0;
   width: 100%;
-  transform: translate3d(0,0,0);
-  -webkit-backface-visibility: hidden; /* Safari */
+  /* transform: translate3d(0,0,0); */
+  -webkit-backface-visibility: hidden; /*Safari */
   backface-visibility: hidden;
 }
 
@@ -257,13 +260,13 @@
 } */
 
 .recipe-front-text {
-    grid-row-start: 2;
-    grid-row-end: 3;
-    align-self: end;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  align-self: end;
 }
 
 .recipe-card-back {
-  background-color: white;
+  background-color: transparent;
   color: black;
   height: 336px;
   width: 276px;
@@ -272,12 +275,15 @@
   border-radius: 2px;
   display: grid;
   grid-template-rows: 1fr 1fr 4fr;
+  overflow: hidden;
 }
+
 
 .recipe-back-title {
   grid-row-start: 1;
   grid-row-end: 2;
   font-size: 12px;
+  overflow: hidden;
 }
 
 .recipe-back-description {
@@ -287,6 +293,7 @@
   width: 90%;
   margin: 0px auto;
   text-align: justify;
+  overflow: hidden;
 }
 
 .recipe-back-author-container {
@@ -320,7 +327,6 @@
 .recipe-back-author-pic img:hover {
   width: 65px;
   height: 65px;
-  border-radius: 50%;
 }
 
 /* -------------- DEMO CARDS FOR CARD CREATION -------------- */
