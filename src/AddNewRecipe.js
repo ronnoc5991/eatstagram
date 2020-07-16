@@ -13,6 +13,7 @@ const AddNewRecipe = () => {
     const [recipeTitle, setRecipeTitle] = useState('');    
     const [recipeDescription, setRecipeDescription] = useState('');
     const [recipePhoto, setRecipePhoto] = useState(null);
+    const [step, setStep] = useState(1);
 
 
     //I want the display to change to home Display upon Recipe Creation
@@ -77,22 +78,58 @@ const AddNewRecipe = () => {
         return !!firebase.auth().currentUser;
       }
 
+    function nextStep (e) {
+        e.preventDefault();
+        setStep(step + 1);
+    }
+
+    function previousStep (e) {
+        e.preventDefault();
+        setStep(step - 1);
+    }
+
+    function nextStepPossible () {
+        if (step >= 1 && step < 4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function previousStepPossible () {
+        if (step > 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     return (
         <div className="new-recipe-view">
             <form className="recipe-form" >
-                <label htmlFor="title" className="form-title" >
+                { (step === 1) && <label htmlFor="title" className="form-title" >
                     Title:
                     <input type="text" name="title" maxLength="18" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
-                </label>
-                <label htmlFor="photo" className="form-photo" >
+                </label> }
+
+                { (step === 2) &&  <label htmlFor="photo" className="form-photo" >
                     Photo:
                     <input type="file" name="photo" autoComplete="off" onChange= { handlePhotoChange } />
-                </label>
-                <label htmlFor="description" className="form-description" >
+                </label>}
+
+                { (step === 3) && <label htmlFor="description" className="form-description" >
                     Description:
                     <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
-                </label>
-                <button onClick={ createRecipe } className="submit-button" >Create</button>
+                </label>}
+
+                { step === 4 && <button onClick={ createRecipe } className="submit-button" >Create</button> } 
+
+                <div className="form-button-container">
+                    { previousStepPossible() ? <div className="previous-step-button"><i class="fa fa-arrow-left fa-4x" onClick={ previousStep }></i></div> : ''}
+                    { nextStepPossible() ? <div className="next-step-button" ><i class="fa fa-arrow-right fa-4x" onClick={ nextStep }></i></div> : '' }
+                    {/* create button should only be clickable if the user is signed in */}
+                    {/* the image that the user uploads should display as they are progressing through the steps */}
+                </div>
             </form>
 
             <div className="draft-recipe-card-container">

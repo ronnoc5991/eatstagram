@@ -128,35 +128,67 @@
 }
 
 .recipe-form {
-  border: 1px solid black;
-  padding: 15px;
+  height: 400px;
+  width: 400px;
+  display: flex;
+  border: 5px solid black;
   display: grid;
-  grid-template-rows: 1fr 1fr 4fr 1fr;
+  grid-template-rows: 3fr 1fr;
   margin: auto;
 }
 
 .form-title {
-  grid-row-start: 1;
-  grid-row-end: 2;
+  margin: auto;
 }
 
 .form-photo {
-  grid-row-start: 2;
-  grid-row-end: 3;
+  margin: auto;
 }
 
 .form-description {
-  grid-row-start: 3;
-  grid-row-end: 4;
+  margin: auto;
 }
 
-/* #description:focus .recipe-card-inner {
-  transform: rotateY(180deg);
-} */
+.form-button-container {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.previous-step-button {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  display: flex;
+}
+
+.previous-step-button i {
+  margin: auto;
+}
+
+.previous-step-button i:hover {
+  cursor: pointer;
+  color: rgb(17, 187, 40);
+  transform: scale(1.1);
+}
+
+.next-step-button {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  display: flex;
+}
+
+.next-step-button i {
+  margin: auto;
+}
+
+.next-step-button i:hover {
+  cursor: pointer;
+  color: rgb(17, 187, 40);
+  transform: scale(1.1);
+}
 
 .submit-button {
-  grid-row-start: 4;
-  grid-row-end: 5;
   align-self: center;
   margin: auto;
   width: 100px;
