@@ -12,7 +12,7 @@ const AddNewRecipe = () => {
 
     const [recipeTitle, setRecipeTitle] = useState('');    
     const [recipeDescription, setRecipeDescription] = useState('');
-    const [recipePhoto, setRecipePhoto] = useState('');
+    const [recipePhoto, setRecipePhoto] = useState(null);
 
 
     //I want the display to change to home Display upon Recipe Creation
@@ -40,18 +40,6 @@ const AddNewRecipe = () => {
     function getProfilePicUrl() {
         return firebase.auth().currentUser.photoURL;
     }
-
-    // function saveRecipe (title, description) {
-    //     return firebase.firestore().collection('recipes').add({
-    //         name: getUserName(),
-    //         title: title,
-    //         description: description,
-    //         profilePicUrl: getProfilePicUrl(),
-    //         timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    //     }).catch(function(error) {
-    //         console.error('Error writing new message to database', error);
-    //     });
-    // }
 
     function handlePhotoChange (e) {
         if (e.target.files[0]) {
@@ -84,12 +72,17 @@ const AddNewRecipe = () => {
         })
     }
 
+    function isUserSignedIn() {
+        //this returns true is a user is signed in.... maybe that state takes care of this job?
+        return !!firebase.auth().currentUser;
+      }
+
     return (
         <div className="new-recipe-view">
             <form className="recipe-form" >
                 <label htmlFor="title" className="form-title" >
                     Title:
-                    <input type="text" name="title" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
+                    <input type="text" name="title" maxLength="18" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
                 </label>
                 <label htmlFor="photo" className="form-photo" >
                     Photo:
@@ -97,27 +90,39 @@ const AddNewRecipe = () => {
                 </label>
                 <label htmlFor="description" className="form-description" >
                     Description:
-                    <input type="textarea" name="description" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } />
+                    <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
                 </label>
                 <button onClick={ createRecipe } className="submit-button" >Create</button>
             </form>
 
-        <div className="draft-recipe-card-container">
-            <div class="display-card-demo">
-                <div class="display-card-front-demo">
-                    <img src={ recipePhoto } alt=""></img>
-                    <div class="front-text-demo"><h1> { recipeTitle } </h1></div>
-                </div>
-            </div>
-
-                <div class="display-card-demo">
-                    <div className="display-card-back-demo">
-                        <h1> { recipeTitle } </h1>
-                        <p> { recipeDescription } </p>
+            <div className="draft-recipe-card-container">
+                <div className="recipe-card-creation">
+                    <div className="recipe-card-inner-creation">
+                        
+                        <div className="recipe-card-front-creation">
+                            <div className="image-container-creation" >
+                                <img src={ recipePhoto ? recipePhoto : '' } alt=""/>    
+                                {/* how to create a life view of the photo on upload? */}
+                            </div>
+                            <div className="recipe-front-text-creation">
+                                <h1> { recipeTitle } </h1>
+                            </div>
+                        </div>
+                        
+                        <div className="recipe-card-back-creation">
+                            <div className="recipe-back-title-creation" ><h1>{ recipeTitle }</h1></div>
+                            <div className="recipe-back-description-creation" ><p> { recipeDescription } </p></div>
+                            <div className="recipe-back-author-container-creation">
+                                <div className="recipe-back-author-creation" ><p> { isUserSignedIn() ? getUserName() : 'YOUR NAME HERE' } </p></div>
+                                <div className="recipe-back-author-pic-creation" > { isUserSignedIn() ? <img src={getProfilePicUrl()} alt=""/> : <i className="fa fa-user fa-5x"></i> } </div>
+                            </div>
+                        </div>
+                    
                     </div>
                 </div>
             </div>
         </div>
+
     )
 }
 

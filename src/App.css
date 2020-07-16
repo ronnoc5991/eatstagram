@@ -7,6 +7,7 @@
   overflow-x: hidden;
   display: flex;
   justify-content: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .header {
@@ -122,18 +123,13 @@
 /* -------------------- ADD NEW RECIPE -------------------- */
 
 .new-recipe-view {
-  grid-row-start: 2;
-  grid-row-end: 3;
   height: 100%;
-  display: grid;
-  grid-template-rows: 1fr 3fr;
+  display: flex;
 }
 
 .recipe-form {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  background-color: red;
-  align-self: center;
+  border: 1px solid black;
+  padding: 15px;
   display: grid;
   grid-template-rows: 1fr 1fr 4fr 1fr;
   margin: auto;
@@ -142,7 +138,6 @@
 .form-title {
   grid-row-start: 1;
   grid-row-end: 2;
-
 }
 
 .form-photo {
@@ -155,6 +150,10 @@
   grid-row-end: 4;
 }
 
+/* #description:focus .recipe-card-inner {
+  transform: rotateY(180deg);
+} */
+
 .submit-button {
   grid-row-start: 4;
   grid-row-end: 5;
@@ -164,8 +163,8 @@
 }
 
 .draft-recipe-card-container {
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
   display: flex;
   margin: auto;
 }
@@ -263,6 +262,8 @@
   grid-row-start: 2;
   grid-row-end: 3;
   align-self: end;
+  font-size: 10px;
+  margin-bottom: 9px;
 }
 
 .recipe-card-back {
@@ -282,7 +283,7 @@
 .recipe-back-title {
   grid-row-start: 1;
   grid-row-end: 2;
-  font-size: 12px;
+  font-size: 10px;
   overflow: hidden;
 }
 
@@ -292,7 +293,7 @@
   font-size: 14px;
   width: 90%;
   margin: 0px auto;
-  text-align: justify;
+  text-align: center;
   overflow: hidden;
 }
 
@@ -314,6 +315,7 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
+  background-color: grey;
   grid-row-start: 1;
   grid-row-end: 2;
   position: absolute;
@@ -330,36 +332,6 @@
 }
 
 /* -------------- DEMO CARDS FOR CARD CREATION -------------- */
-
-.display-card-demo {
-  justify-self: center;
-  background-color: transparent;
-  width: 345px;
-  height: 420px;
-  margin: 20px;
-  box-shadow: 0px 0px 13px 0px #8a8a8a;
-}
-
-.display-card-front-demo {
-  background-color: white;
-  color: black;
-  height: 100%;
-  width: 100%;
-  display: grid;
-  background-image: url("https://www.transparenttextures.com/patterns/cream-pixels.png");
-  grid-template-rows: 346px 74px;
-  text-align: center;
-  justify-content: center;
-  position: relative;
-}
-
-.display-card-front-demo img {
-    margin-top: 23px;
-    justify-self: center;
-    width: 308px;
-    height: 300px;
-    object-fit: cover;
-}
 
 .polaroid-development {
   margin-top: 19px;
@@ -378,14 +350,157 @@
   background-color: white;
 }
 
-.front-text-demo {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  align-self: end;
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+
+.recipe-card-creation {
+  background-color: transparent;
+  /* width: 276px;
+  height: 336px; */
+  width: 552px;
+  height: 672px;
+  perspective: 1000px;
+  margin: 20px;
 }
 
-.display-card-back-demo {
-  background-color: white;
-  color: black;
+
+/* This container is needed to position the front and back side */
+.recipe-card-inner-creation {
+  position: relative;
   width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  box-shadow: 0px 0px 13px 0px #8a8a8a;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.recipe-card-creation:hover .recipe-card-inner-creation {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.recipe-card-front-creation, .recipe-card-back-creation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.recipe-card-front-creation {
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/cream-pixels.png");
+  color: black;
+  display: grid;
+  grid-template-rows: 554px 118px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.image-creation {
+  margin-top: 36px;
+  justify-self: center;
+  width: 492px;
+  height: 480px;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.image-container-creation {
+  margin-top: 36px;
+  justify-self: center;
+  width: 492px;
+  height: 480px;
+  background-color: transparent;
+  /* display: block; */
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container-creation img {
+  position: absolute;
+  top: -15%;
+  left: 0;
+  width: 100%;
+  /* transform: translate3d(0,0,0); */
+  -webkit-backface-visibility: hidden; /*Safari */
+  backface-visibility: hidden;
+}
+
+.recipe-front-text-creation {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-size: 20px;
+  align-self: end;
+  margin-bottom: 18px;
+}
+
+.recipe-card-back-creation {
+  background-color: transparent;
+  color: black;
+  height: 672px;
+  width: 552px;
+  transform: rotateY(180deg);
+  text-align: center;
+  border-radius: 4px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 4fr;
+  overflow: hidden;
+}
+
+
+.recipe-back-title-creation {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+.recipe-back-description-creation {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  font-size: 28px;
+  width: 90%;
+  margin: 0px auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.recipe-back-author-container-creation {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  position: relative;
+}
+
+.recipe-back-author-creation {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-size: 24px;
+}
+
+.recipe-back-author-pic-creation img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: grey;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  transition: all 300ms;
+  transform-origin: center;
+}
+
+.recipe-back-author-pic-creation img:hover {
+  width: 130px;
+  height: 130px;
 }
