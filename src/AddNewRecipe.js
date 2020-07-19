@@ -104,8 +104,17 @@ const AddNewRecipe = () => {
         }
     }
 
+    function needToSignIn () {
+        if ( step === 4 && !isUserSignedIn()) {
+            return true
+        }  else {
+            return false
+        }
+    }
+
     return (
         <div className="new-recipe-view">
+            { needToSignIn() && <div className="sign-in-arrow"><i class="fa fa-arrow-up fa-4x"></i></div> }
             <form className="recipe-form" >
                 <div className="recipe-creation-header"> <h2>Recipe Creation Station</h2></div>
                 { (step === 1) && <label htmlFor="title" className="form-title" >
@@ -122,15 +131,20 @@ const AddNewRecipe = () => {
 
                 { (step === 3) && <label htmlFor="description" className="form-description" >
                     <h2>Step 3</h2>
-                    Give a short description of your dish:
+                    Give a short description of your dish...
                     <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
                 </label>}
 
-                { step === 4 && <button onClick={ createRecipe } className="submit-button" >Create</button> } 
+                { step === 4 && (<div className="create-button-container">
+                            <h2>Step 4</h2>
+                            { isUserSignedIn() ? 'Publish your recipe!' : 'Please sign-in to share your recipe.' }
+                            <div> { isUserSignedIn() ?  <button onClick={ createRecipe } className="submit-button" ><div className="submit-button-inner"> <div className="flashers-1"></div><div className="flashers-2"></div> </div><div className="flashers-3"></div></button> : <button className="submit-button-fake" > <div></div></button>  } </div>   
+                                </div>) } 
+
 
                 <div className="form-button-container">
-                    { previousStepPossible() ? <div className="previous-step-button"><i class="fa fa-arrow-left fa-4x" onClick={ previousStep }></i></div> : ''}
-                    { nextStepPossible() ? <div className="next-step-button" ><i class="fa fa-arrow-right fa-4x" onClick={ nextStep }></i></div> : '' }
+                    { previousStepPossible() ? <div className="previous-step-button"><i className="fa fa-arrow-left fa-4x" onClick={ previousStep }></i></div> : ''}
+                    { nextStepPossible() ? <div className="next-step-button" ><i className="fa fa-arrow-right fa-4x" onClick={ nextStep }></i></div> : '' }
                     {/* create button should only be clickable if the user is signed in */}
                     {/* the image that the user uploads should display as they are progressing through the steps */}
                 </div>
@@ -138,11 +152,11 @@ const AddNewRecipe = () => {
 
             <div className="draft-recipe-card-container">
                 <div className="recipe-card-creation">
-                    <div className="recipe-card-inner-creation">
+                    <div className={`recipe-card-inner-creation ${step === 3 ? 'flip' : '' }`}>
                         
                         <div className="recipe-card-front-creation">
                             <div className="image-container-creation" >
-                                <img src={ recipePhoto ? recipePhoto : '' } alt=""/>    
+                                <img src={ recipePhoto ? recipePhoto : 'https://source.unsplash.com/random/400x400' } alt=""/>    
                                 {/* how to create a life view of the photo on upload? */}
                             </div>
                             <div className="recipe-front-text-creation">

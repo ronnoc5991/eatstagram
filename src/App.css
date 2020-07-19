@@ -46,14 +46,14 @@
   color: rgb(148, 148, 148);
 }
 
-.new-recipe:hover {
-  color: #C70017;
-}
-
 .new-recipe-icon-container {
   margin-right: 40px;
   width: 35px;
   height: 32px;
+}
+
+.new-recipe-icon-container:hover {
+  color: #C70017;
 }
 
 .new-recipe-icon-container i{
@@ -115,6 +115,8 @@
 }
 
 .home-view {
+  width: 90%;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -126,6 +128,7 @@
   height: 90vh;
   display: grid;
   grid-template-columns: 1fr 3fr;
+  position: relative;
 }
 
 .recipe-form {
@@ -135,7 +138,7 @@
   display: flex;
   box-shadow: 0px 0px 2px 2px rgb(200, 200, 200);
   display: grid;
-  grid-template-rows: 1fr 6fr 1fr;
+  grid-template-rows: 1fr 7fr 1fr;
   margin: auto;
   background-color: rgb(251,251,251);
 }
@@ -149,6 +152,7 @@
   grid-row-end: 2;
   color: #C70017;
   margin: auto;
+  font-size: 12px;
 }
 
 .form-title {
@@ -165,6 +169,7 @@
   all: unset;
   border-bottom: 2px solid rgba(0, 0, 0, 0.623);
   height: 30px;
+  margin-top: 50px;
 }
 
 .form-title input:focus {
@@ -185,6 +190,7 @@
   width: 80%;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 50px;
 }
 
 .form-description {
@@ -243,12 +249,143 @@
   transform: scale(1.1);
 }
 
-.submit-button {
-  align-self: center;
+.create-button-container {
   margin: auto;
-  width: 100px;
   grid-row-start: 2;
   grid-row-end: 3;
+  display: grid;
+  grid-template-rows: 1fr 1fr 5fr;
+  font-size: 18px;
+}
+
+.submit-button {
+  all: unset;
+  align-self: center;
+  margin: auto;
+  color: white;
+  font-style: italic;
+  background-color: rgb(0, 163, 35);
+  border: 2px solid black;
+  box-shadow: 0px 0px 2px 2px grey;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 80px;
+  position: relative;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+}
+
+.submit-button-inner {
+  background-color: rgb(0, 163, 35);
+  border: 2px solid black;
+  box-shadow: 0px 0px 2px 2px white;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+@keyframes pulse {
+  0% {height: 150px; width: 150px;}
+  100% {transform: translate(-50%, -50%) scale(1.4) ; border: 1px solid transparent}
+}
+
+.flashers-1 {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 1px solid green;
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: pulse;
+  animation-duration: 900ms;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+}
+
+.flashers-2 {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 1px solid green;
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: pulse;
+  animation-duration: 900ms;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  animation-delay: 100ms;
+}
+
+.flashers-3 {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 1px solid green;
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: pulse;
+  animation-duration: 900ms;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  animation-delay: 200ms;
+}
+
+.submit-button:focus div {
+  box-shadow: 0px 0px 2px 2px white inset;
+}
+
+.submit-button-fake {
+  all: unset;
+  align-self: center;
+  margin: auto;
+  color: white;
+  font-style: italic;
+  background-color: rgb(129, 129, 129);
+  border: 2px solid black;
+  box-shadow: 0px 0px 2px 2px grey;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 80px;
+  pointer-events: none;
+}
+
+.submit-button-fake div {
+  background-color: rgb(129, 129, 129);
+  border: 2px solid black;
+  box-shadow: 0px 0px 2px 2px white;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.sign-in-arrow {
+  position: absolute;
+  right: 62px;
+  color: #C70017;
+  animation-name: point-up;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+}
+
+@keyframes point-up {
+  0% {transform: translateY(0%) scale(1.2);}
+  50% {transform: translateY(100%);}
+  100% {transform: translateY(0%) scale(1.2);}
 }
 
 .draft-recipe-card-container {
@@ -336,16 +473,6 @@
   -webkit-backface-visibility: hidden; /*Safari */
   backface-visibility: hidden;
 }
-
-/* .recipe-card-front img {
-  margin-top: 18px;
-  justify-self: center;
-  width: 308px;
-  height: 300px;
-  width: 246px;
-  height: 240px;
-  object-fit: cover;
-} */
 
 .recipe-front-text {
   grid-row-start: 2;
@@ -468,6 +595,10 @@
   transform: rotateY(180deg);
 }
 
+.flip {
+  transform: rotateY(180deg);
+}
+
 /* Position the front and back side */
 .recipe-card-front-creation, .recipe-card-back-creation {
   position: absolute;
@@ -513,7 +644,7 @@
 
 .image-container-creation img {
   position: absolute;
-  top: -15%;
+  /* top: -15%; */
   left: 0;
   width: 100%;
   /* transform: translate3d(0,0,0); */

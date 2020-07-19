@@ -103,8 +103,8 @@ function App() {
           <img src={ logo } alt="" className="logo-image"/>
           {/* Eatstagram */}
         </div>
-        <div className="new-recipe" onClick={() => setCurrentDisplay('new-recipe') }>
-          <div className="new-recipe-icon-container">
+        <div className="new-recipe" >
+          <div className="new-recipe-icon-container" onClick={() => setCurrentDisplay('new-recipe') }>
             <i className="fa fa-camera fa-2x"></i>
             <i className="fa fa-plus-circle"></i>
           </div>
