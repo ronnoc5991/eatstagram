@@ -107,18 +107,22 @@ const AddNewRecipe = () => {
     return (
         <div className="new-recipe-view">
             <form className="recipe-form" >
+                <div className="recipe-creation-header"> <h2>Recipe Creation Station</h2></div>
                 { (step === 1) && <label htmlFor="title" className="form-title" >
-                    Title:
+                    <h2>Step 1</h2>
+                    Give your recipe a name...
                     <input type="text" name="title" maxLength="18" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
                 </label> }
 
                 { (step === 2) &&  <label htmlFor="photo" className="form-photo" >
-                    Photo:
+                    <h2>Step 2</h2>
+                    Upload a photo of your dish...
                     <input type="file" name="photo" autoComplete="off" onChange= { handlePhotoChange } />
                 </label>}
 
                 { (step === 3) && <label htmlFor="description" className="form-description" >
-                    Description:
+                    <h2>Step 3</h2>
+                    Give a short description of your dish:
                     <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
                 </label>}
 
