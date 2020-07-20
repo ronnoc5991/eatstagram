@@ -14,9 +14,10 @@ import "firebase/storage";
 
 function App() {
 
-  const [currentDisplay, setCurrentDisplay] = useState('new-recipe');  
+  const [currentDisplay, setCurrentDisplay] = useState('home');  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
+  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
     console.log('log in status changed')
@@ -36,14 +37,14 @@ function App() {
 
     recipesArray = [];
 
-    firebase.firestore().collection('recipes').get().then(function(querySnapshot) {
+    firebase.firestore().collection('recipes').orderBy("timestamp" , "desc").limit(limit).get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         recipesArray.push(doc.data());
     })
     }).then (() => {
         setRecipes(recipesArray);
     });
-};
+  };
 
 
 
@@ -101,7 +102,6 @@ function App() {
       <header className="header">
         <div className="logo" onClick={() => setCurrentDisplay('home') }>
           <img src={ logo } alt="" className="logo-image"/>
-          {/* Eatstagram */}
         </div>
         <div className="new-recipe" >
           <div className="new-recipe-icon-container" onClick={() => setCurrentDisplay('new-recipe') }>
