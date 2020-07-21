@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&family=Walter+Turncoat&display=swap');
+
 .App {
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -7,7 +9,8 @@
   overflow-x: hidden;
   display: flex;
   justify-content: center;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* font-family: 'Rock Salt', cursive; */
+  font-family: 'Walter Turncoat', cursive;
 }
 
 .header {
@@ -116,6 +119,7 @@
 
 .home-view {
   width: 90%;
+  min-height: 90vh;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -141,6 +145,7 @@
   grid-template-rows: 10vh 70vh 10vh;
   margin: auto;
   background-color: rgb(251,251,251);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .recipe-form h2 {
@@ -449,7 +454,7 @@
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  -webkit-backface-visibility: hidden; /* Safari */
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -458,7 +463,7 @@
   justify-self: center;
   width: 246px;
   height: 246px;
-  background-color: transparent;
+  background-color: white;
   /* display: block; */
   position: relative;
   overflow: hidden;
@@ -469,8 +474,8 @@
   /* top: -15%;
   left: 0; */
   width: 100%;
-  /* transform: translate3d(0,0,0); */
-  -webkit-backface-visibility: hidden; /*Safari */
+  transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -478,8 +483,8 @@
   grid-row-start: 2;
   grid-row-end: 3;
   align-self: end;
-  font-size: 10px;
-  margin-bottom: 9px;
+  font-size: 12px;
+  margin-bottom: 2px;
 }
 
 .recipe-card-back {
@@ -506,11 +511,12 @@
 .recipe-back-description {
   grid-row-start: 3;
   grid-row-end: 4;
-  font-size: 14px;
+  font-size: 15px;
   width: 90%;
   margin: 0px auto;
   text-align: center;
   overflow: hidden;
+  font-family: 'Walter Turncoat', cursive;
 }
 
 .recipe-back-author-container {
@@ -655,9 +661,9 @@
 .recipe-front-text-creation {
   grid-row-start: 2;
   grid-row-end: 3;
-  font-size: 20px;
+  font-size: 18px;
   align-self: end;
-  margin-bottom: 18px;
+  margin-bottom: 4px;
 }
 
 .recipe-card-back-creation {
@@ -684,7 +690,7 @@
 .recipe-back-description-creation {
   grid-row-start: 3;
   grid-row-end: 4;
-  font-size: 21px;
+  font-size: 22px;
   width: 90%;
   margin: 0px auto;
   text-align: center;

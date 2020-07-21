@@ -9,7 +9,7 @@ import "firebase/firestore";
 import "firebase/storage";
 import ReactCrop from 'react-image-crop'
 import "react-image-crop/dist/ReactCrop.css";
-import {base64StringtoFile, downloadBase64File, extractImageFileExtensionFromBase64, image64toCanvasRef} from './ReusableUtils'
+import {base64StringtoFile, extractImageFileExtensionFromBase64} from './ReusableUtils'
 
 
 const AddNewRecipe = () => {
@@ -44,31 +44,6 @@ function getResizedCanvas(canvas, newWidth, newHeight) {
   return tmpCanvas;
 }
 
-function generateDownload(previewCanvas, crop) {
-  if (!crop || !previewCanvas) {
-    return;
-  }
-
-  const canvas = getResizedCanvas(previewCanvas, crop.width, crop.height);
-
-  canvas.toBlob(
-    blob => {
-    //   const previewUrl = window.URL.createObjectURL(blob);
-
-    //   const anchor = document.createElement("a");
-    //   anchor.download = "cropPreview.png";
-    //   anchor.href = URL.createObjectURL(blob);
-      setRecipePhoto(URL.createObjectURL(blob));
-    //   anchor.click();
-
-    //   window.URL.revokeObjectURL(previewUrl);
-    },
-    "image/png",
-    1
-  );
-}
-
-
     //I want the display to change to home Display upon Recipe Creation
 
     function createRecipe (e) {
@@ -94,14 +69,6 @@ function generateDownload(previewCanvas, crop) {
 
     function getProfilePicUrl() {
         return firebase.auth().currentUser.photoURL;
-    }
-
-    function handlePhotoChange (e) {
-        if (e.target.files[0]) {
-            const image = e.target.files[0];
-            console.log(image);
-            setRecipePhoto(image);
-        }
     }
 
     function saveRecipeWithImage (title, description, file) {
@@ -251,7 +218,6 @@ function preparePhotoForUpload () {
                 { (step === 2) &&  <label htmlFor="photo" className="form-photo" >
                     <h2>Step 2</h2>
                     Upload a photo of your dish...
-                    {/* <input type="file" name="photo" autoComplete="off" onChange= { handlePhotoChange } /> */}
                             <input type="file" accept="image/*" onChange={onSelectFile} />
                         <div className="crop-container">
                             <ReactCrop
@@ -273,7 +239,9 @@ function preparePhotoForUpload () {
                 { step === 4 && (<div className="create-button-container">
                             <h2>Step 4</h2>
                             { isUserSignedIn() ? 'Publish your recipe!' : 'Please sign-in to share your recipe.' }
-                            <div> { isUserSignedIn() ?  <button onClick={ createRecipe } className="submit-button" ><div className="submit-button-inner"> <div className="flashers-1"></div><div className="flashers-2"></div> </div><div className="flashers-3"></div></button> : <button className="submit-button-fake" > <div></div></button>  } </div>   
+                            <div> { isUserSignedIn() ?
+                              <button onClick={ createRecipe } className="submit-button" ><div className="submit-button-inner"> <div className="flashers-1"></div><div className="flashers-2"></div> </div><div className="flashers-3"></div></button> 
+                            : <button className="submit-button-fake" > <div></div></button>  } </div>   
                                 </div>) } 
 
 
