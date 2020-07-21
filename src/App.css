@@ -457,7 +457,7 @@
   margin-top: 18px;
   justify-self: center;
   width: 246px;
-  height: 240px;
+  height: 246px;
   background-color: transparent;
   /* display: block; */
   position: relative;
@@ -465,9 +465,9 @@
 }
 
 .image-container img {
-  position: absolute;
-  top: -15%;
-  left: 0;
+  /* position: absolute; */
+  /* top: -15%;
+  left: 0; */
   width: 100%;
   /* transform: translate3d(0,0,0); */
   -webkit-backface-visibility: hidden; /*Safari */
@@ -483,7 +483,7 @@
 }
 
 .recipe-card-back {
-  background-color: transparent;
+  background-color: white;
   color: black;
   height: 336px;
   width: 276px;
@@ -661,7 +661,7 @@
 }
 
 .recipe-card-back-creation {
-  background-color: transparent;
+  background-color: white;
   color: black;
   height: 504px;
   width: 414px;

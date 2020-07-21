@@ -9,9 +9,17 @@ import "firebase/firestore";
 import "firebase/storage";
 import ReactCrop from 'react-image-crop'
 import "react-image-crop/dist/ReactCrop.css";
+import {base64StringtoFile, downloadBase64File, extractImageFileExtensionFromBase64, image64toCanvasRef} from './ReusableUtils'
 
 
-const pixelRatio = 4;
+const AddNewRecipe = () => {
+
+    const [recipeTitle, setRecipeTitle] = useState('');    
+    const [recipeDescription, setRecipeDescription] = useState('');
+    const [recipePhoto, setRecipePhoto] = useState(null);
+    const [step, setStep] = useState(1);
+
+    const pixelRatio = 4;
 
 // We resize the canvas down when saving on retina devices otherwise the image
 // will be double or triple the preview size.
@@ -45,14 +53,15 @@ function generateDownload(previewCanvas, crop) {
 
   canvas.toBlob(
     blob => {
-      const previewUrl = window.URL.createObjectURL(blob);
+    //   const previewUrl = window.URL.createObjectURL(blob);
 
-      const anchor = document.createElement("a");
-      anchor.download = "cropPreview.png";
-      anchor.href = URL.createObjectURL(blob);
-      anchor.click();
+    //   const anchor = document.createElement("a");
+    //   anchor.download = "cropPreview.png";
+    //   anchor.href = URL.createObjectURL(blob);
+      setRecipePhoto(URL.createObjectURL(blob));
+    //   anchor.click();
 
-      window.URL.revokeObjectURL(previewUrl);
+    //   window.URL.revokeObjectURL(previewUrl);
     },
     "image/png",
     1
@@ -60,19 +69,12 @@ function generateDownload(previewCanvas, crop) {
 }
 
 
-const AddNewRecipe = () => {
-
-    const [recipeTitle, setRecipeTitle] = useState('');    
-    const [recipeDescription, setRecipeDescription] = useState('');
-    const [recipePhoto, setRecipePhoto] = useState(null);
-    const [step, setStep] = useState(1);
-
-
     //I want the display to change to home Display upon Recipe Creation
 
     function createRecipe (e) {
         e.preventDefault();
-        saveRecipeWithImage(recipeTitle, recipeDescription, recipePhoto);
+        const photo = preparePhotoForUpload();
+        saveRecipeWithImage(recipeTitle, recipeDescription, photo);
         setRecipeTitle('');
         setRecipeDescription('');
         setRecipePhoto('')
@@ -175,7 +177,10 @@ const [completedCrop, setCompletedCrop] = useState(null);
 const onSelectFile = e => {
   if (e.target.files && e.target.files.length > 0) {
     const reader = new FileReader();
-    reader.addEventListener("load", () => setUpImg(reader.result));
+    reader.addEventListener("load", (e) => {
+        setUpImg(reader.result);
+        preparePhotoForUpload();
+    });
     reader.readAsDataURL(e.target.files[0]);
   }
 };
@@ -216,12 +221,25 @@ useEffect(() => {
   );
 }, [completedCrop]);
 
+
+function preparePhotoForUpload () {
+    if(upImg) {
+        const fileExtension = extractImageFileExtensionFromBase64(upImg);
+        const myFileName = 'recipePhoto.' + fileExtension;
+        const canvasRef = previewCanvasRef.current
+        const imageData64 = canvasRef.toDataURL('image/' + fileExtension)
+
+        const myCroppedFile = base64StringtoFile(imageData64, myFileName);
+        console.log(myCroppedFile);
+        return myCroppedFile;
+    }
+}
 // --------------------------------------------------------------------------------------------------------------------------------------------
 
 
     return (
         <div className="new-recipe-view">
-            { needToSignIn() && <div className="sign-in-arrow"><i class="fa fa-arrow-up fa-4x"></i></div> }
+            { needToSignIn() && <div className="sign-in-arrow"><i className="fa fa-arrow-up fa-4x"></i></div> }
             <form className="recipe-form" >
                 <div className="recipe-creation-header"> <h2>Recipe Creation Station</h2></div>
                 { (step === 1) && <label htmlFor="title" className="form-title" >
@@ -265,53 +283,19 @@ useEffect(() => {
                 </div>
             </form>
 
-{/* --------------------------------------------------------------------------------------------------------------------- */}
-
-<div className="crop-container">
-      {/* <div>
-        <input type="file" accept="image/*" onChange={onSelectFile} />
-      </div>
-      <ReactCrop
-        src={upImg}
-        onImageLoaded={onLoad}
-        crop={crop}
-        onChange={c => setCrop(c)}
-        onComplete={c => setCompletedCrop(c)}
-      /> */}
-
-
-      <div>
-        <canvas
-          ref={previewCanvasRef}
-          style={{
-            width: completedCrop?.width ?? 0,
-            height: completedCrop?.height ?? 0
-          }}
-        />
-      </div>
-      <button
-        type="button"
-        disabled={!completedCrop?.width || !completedCrop?.height}
-        onClick={() =>
-          generateDownload(previewCanvasRef.current, completedCrop)
-        }
-      >
-        Download cropped image
-      </button>
-</div>
-
-{/* --------------------------------------------------------------------------------------------------------------------- */}
-
-
-
-            {/* <div className="draft-recipe-card-container">
+            <div className="draft-recipe-card-container">
                 <div className="recipe-card-creation">
                     <div className={`recipe-card-inner-creation ${step === 3 ? 'flip' : '' }`}>
                         
                         <div className="recipe-card-front-creation">
                             <div className="image-container-creation" >
-                                <img src={ recipePhoto ? recipePhoto : 'https://source.unsplash.com/random/400x400' } alt=""/>    
-                                {/* how to create a life view of the photo on upload?
+                            <canvas
+                                ref={previewCanvasRef}
+                                style={{
+                                    width: "369px",
+                                    height: "360px",
+                                }}
+                                />
                             </div>
                             <div className="recipe-front-text-creation">
                                 <h1> { recipeTitle } </h1>
@@ -329,7 +313,7 @@ useEffect(() => {
                     
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
 
     )
