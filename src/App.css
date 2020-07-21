@@ -127,7 +127,7 @@
 .new-recipe-view {
   height: 90vh;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 400px 1fr;
   position: relative;
 }
 
@@ -138,7 +138,7 @@
   display: flex;
   box-shadow: 0px 0px 2px 2px rgb(200, 200, 200);
   display: grid;
-  grid-template-rows: 1fr 7fr 1fr;
+  grid-template-rows: 10vh 70vh 10vh;
   margin: auto;
   background-color: rgb(251,251,251);
 }
@@ -181,7 +181,7 @@
   grid-row-start: 2;
   grid-row-end: 3;
   display: grid;
-  grid-template-rows: 1fr 1fr 5fr;
+  grid-template-rows: 1fr 1fr 1fr 4fr;
   font-size: 18px;
 }
 
@@ -190,7 +190,7 @@
   width: 80%;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .form-description {
@@ -723,4 +723,10 @@
 .recipe-back-author-pic-creation img:hover {
   width: 98px;
   height: 98px;
+}
+
+.crop-container {
+  max-width: 50%;
+  margin: auto;
+  /* max-height: 100%; */
 }

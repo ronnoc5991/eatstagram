@@ -14,7 +14,7 @@ import "firebase/storage";
 
 function App() {
 
-  const [currentDisplay, setCurrentDisplay] = useState('home');  
+  const [currentDisplay, setCurrentDisplay] = useState('new-recipe');  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [limit, setLimit] = useState(10);

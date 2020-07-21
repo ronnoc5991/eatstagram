@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
@@ -7,6 +7,58 @@ import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
+import ReactCrop from 'react-image-crop'
+import "react-image-crop/dist/ReactCrop.css";
+
+
+const pixelRatio = 4;
+
+// We resize the canvas down when saving on retina devices otherwise the image
+// will be double or triple the preview size.
+function getResizedCanvas(canvas, newWidth, newHeight) {
+  const tmpCanvas = document.createElement("canvas");
+  tmpCanvas.width = newWidth;
+  tmpCanvas.height = newHeight;
+
+  const ctx = tmpCanvas.getContext("2d");
+  ctx.drawImage(
+    canvas,
+    0,
+    0,
+    canvas.width,
+    canvas.height,
+    0,
+    0,
+    newWidth,
+    newHeight
+  );
+
+  return tmpCanvas;
+}
+
+function generateDownload(previewCanvas, crop) {
+  if (!crop || !previewCanvas) {
+    return;
+  }
+
+  const canvas = getResizedCanvas(previewCanvas, crop.width, crop.height);
+
+  canvas.toBlob(
+    blob => {
+      const previewUrl = window.URL.createObjectURL(blob);
+
+      const anchor = document.createElement("a");
+      anchor.download = "cropPreview.png";
+      anchor.href = URL.createObjectURL(blob);
+      anchor.click();
+
+      window.URL.revokeObjectURL(previewUrl);
+    },
+    "image/png",
+    1
+  );
+}
+
 
 const AddNewRecipe = () => {
 
@@ -112,6 +164,61 @@ const AddNewRecipe = () => {
         }
     }
 
+// --------------------------------------------------------------------------------------------------------------------------------------------
+
+const [upImg, setUpImg] = useState();
+const imgRef = useRef(null);
+const previewCanvasRef = useRef(null);
+const [crop, setCrop] = useState({ unit: "%", width: 30, aspect: 1 / 1 });
+const [completedCrop, setCompletedCrop] = useState(null);
+
+const onSelectFile = e => {
+  if (e.target.files && e.target.files.length > 0) {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => setUpImg(reader.result));
+    reader.readAsDataURL(e.target.files[0]);
+  }
+};
+
+const onLoad = useCallback(img => {
+  imgRef.current = img;
+}, []);
+
+useEffect(() => {
+  if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
+    return;
+  }
+
+  const image = imgRef.current;
+  const canvas = previewCanvasRef.current;
+  const crop = completedCrop;
+
+  const scaleX = image.naturalWidth / image.width;
+  const scaleY = image.naturalHeight / image.height;
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = crop.width * pixelRatio;
+  canvas.height = crop.height * pixelRatio;
+
+  ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  ctx.imageSmoothingEnabled = false;
+
+  ctx.drawImage(
+    image,
+    crop.x * scaleX,
+    crop.y * scaleY,
+    crop.width * scaleX,
+    crop.height * scaleY,
+    0,
+    0,
+    crop.width,
+    crop.height
+  );
+}, [completedCrop]);
+
+// --------------------------------------------------------------------------------------------------------------------------------------------
+
+
     return (
         <div className="new-recipe-view">
             { needToSignIn() && <div className="sign-in-arrow"><i class="fa fa-arrow-up fa-4x"></i></div> }
@@ -126,7 +233,17 @@ const AddNewRecipe = () => {
                 { (step === 2) &&  <label htmlFor="photo" className="form-photo" >
                     <h2>Step 2</h2>
                     Upload a photo of your dish...
-                    <input type="file" name="photo" autoComplete="off" onChange= { handlePhotoChange } />
+                    {/* <input type="file" name="photo" autoComplete="off" onChange= { handlePhotoChange } /> */}
+                            <input type="file" accept="image/*" onChange={onSelectFile} />
+                        <div className="crop-container">
+                            <ReactCrop
+                                src={upImg}
+                                onImageLoaded={onLoad}
+                                crop={crop}
+                                onChange={c => setCrop(c)}
+                                onComplete={c => setCompletedCrop(c)}
+                            />
+                        </div>
                 </label>}
 
                 { (step === 3) && <label htmlFor="description" className="form-description" >
@@ -145,19 +262,56 @@ const AddNewRecipe = () => {
                 <div className="form-button-container">
                     { previousStepPossible() ? <div className="previous-step-button"><i className="fa fa-arrow-left fa-4x" onClick={ previousStep }></i></div> : ''}
                     { nextStepPossible() ? <div className="next-step-button" ><i className="fa fa-arrow-right fa-4x" onClick={ nextStep }></i></div> : '' }
-                    {/* create button should only be clickable if the user is signed in */}
-                    {/* the image that the user uploads should display as they are progressing through the steps */}
                 </div>
             </form>
 
-            <div className="draft-recipe-card-container">
+{/* --------------------------------------------------------------------------------------------------------------------- */}
+
+<div className="crop-container">
+      {/* <div>
+        <input type="file" accept="image/*" onChange={onSelectFile} />
+      </div>
+      <ReactCrop
+        src={upImg}
+        onImageLoaded={onLoad}
+        crop={crop}
+        onChange={c => setCrop(c)}
+        onComplete={c => setCompletedCrop(c)}
+      /> */}
+
+
+      <div>
+        <canvas
+          ref={previewCanvasRef}
+          style={{
+            width: completedCrop?.width ?? 0,
+            height: completedCrop?.height ?? 0
+          }}
+        />
+      </div>
+      <button
+        type="button"
+        disabled={!completedCrop?.width || !completedCrop?.height}
+        onClick={() =>
+          generateDownload(previewCanvasRef.current, completedCrop)
+        }
+      >
+        Download cropped image
+      </button>
+</div>
+
+{/* --------------------------------------------------------------------------------------------------------------------- */}
+
+
+
+            {/* <div className="draft-recipe-card-container">
                 <div className="recipe-card-creation">
                     <div className={`recipe-card-inner-creation ${step === 3 ? 'flip' : '' }`}>
                         
                         <div className="recipe-card-front-creation">
                             <div className="image-container-creation" >
                                 <img src={ recipePhoto ? recipePhoto : 'https://source.unsplash.com/random/400x400' } alt=""/>    
-                                {/* how to create a life view of the photo on upload? */}
+                                {/* how to create a life view of the photo on upload?
                             </div>
                             <div className="recipe-front-text-creation">
                                 <h1> { recipeTitle } </h1>
@@ -175,7 +329,7 @@ const AddNewRecipe = () => {
                     
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
 
     )
