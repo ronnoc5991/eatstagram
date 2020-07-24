@@ -17,7 +17,7 @@ function App() {
   const [currentDisplay, setCurrentDisplay] = useState('home');  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(5);
 
   useEffect(() => {
     console.log('log in status changed')
@@ -31,11 +31,11 @@ function App() {
   }, [currentDisplay])
 
 
-  var recipesArray = [];
+  // var recipesArray = [];
 
   function getRecipes() {
 
-    recipesArray = [];
+    var recipesArray = [];
 
     firebase.firestore().collection('recipes').orderBy("timestamp" , "desc").limit(limit).get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
@@ -81,6 +81,14 @@ function App() {
     return firebase.auth().currentUser.displayName;
   }
 
+  function loadMoreRecipes () {
+    setLimit(limit + 5);
+  }
+
+  useEffect(() => {
+    getRecipes();
+  }, [limit])
+
 
   return (
     <div className="App">
@@ -104,7 +112,11 @@ function App() {
         </div>
       </header>
       <div className="current-display"> 
-        { currentDisplay === 'home' && <Home recipeCollection={ recipes }/>}
+        { currentDisplay === 'home' && <><Home recipeCollection={ recipes } /> 
+            <div className="more-recipes-container" onClick={ loadMoreRecipes } >
+              <div className="more-recipes-title" >More Recipes</div>
+              <div className="more-recipes-icon"><i className="fa fa-chevron-down"></i></div>
+            </div></>  }
         { currentDisplay === 'new-recipe' && <AddNewRecipe />}
       </div>
     </div>

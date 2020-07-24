@@ -89,6 +89,8 @@
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* -------------------- SIGNED-IN-USER -------------------- */
@@ -119,17 +121,66 @@
 
 .home-view {
   width: 90%;
-  min-height: 90vh;
+  min-height: 70vh;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
+.more-recipes-container {
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  cursor: pointer;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.more-recipes-container:hover div {
+  animation-duration: 800ms;
+  cursor: pointer;
+}
+
+.more-recipes-title {
+  margin: auto;
+  width: 100%;
+  animation-name: load;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes load {
+  0% { transform: scale(1) }
+  50% { transform: scale(1.2)  }
+  100% { transform: scale(1)  }
+}
+
+.more-recipes-icon {
+  margin: auto;
+  animation-name: bob;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.more-recipes-icon i {
+  pointer-events: none;
+}
+
+@keyframes bob {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(30px); }
+  100% { transform: translateY(0px); }
+}
+
+
 /* -------------------- ADD NEW RECIPE -------------------- */
 
 .new-recipe-view {
   height: 90vh;
+  width: 100vw;
   display: grid;
   grid-template-columns: 400px 1fr;
   position: relative;
