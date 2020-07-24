@@ -18,6 +18,7 @@ const AddNewRecipe = () => {
     const [recipeDescription, setRecipeDescription] = useState('');
     const [recipePhoto, setRecipePhoto] = useState(null);
     const [step, setStep] = useState(1);
+    const [submitted, setSubmitted] = useState(false);
 
     const pixelRatio = 4;
 
@@ -50,9 +51,10 @@ function getResizedCanvas(canvas, newWidth, newHeight) {
         e.preventDefault();
         const photo = preparePhotoForUpload();
         saveRecipeWithImage(recipeTitle, recipeDescription, photo);
-        setRecipeTitle('');
-        setRecipeDescription('');
-        setRecipePhoto('')
+        setSubmitted(true);
+        // setRecipeTitle('');
+        // setRecipeDescription('');
+        // setRecipePhoto('')
     }
 
     function changeRecipeTitle (e) {
@@ -110,15 +112,19 @@ function getResizedCanvas(canvas, newWidth, newHeight) {
     }
 
     function nextStepPossible () {
-        if (step >= 1 && step < 4) {
-            return true;
+        if (step === 1 && upImg ) {
+            return true
+        } else if (step === 2 && recipeTitle !== '') {
+            return true
+        } else if (step === 3 && recipeDescription) {
+            return true
         } else {
-            return false;
+            return false
         }
     }
 
     function previousStepPossible () {
-        if (step > 1) {
+        if (step > 1  && !submitted) {
             return true;
         } else {
             return false;
@@ -209,14 +215,15 @@ function preparePhotoForUpload () {
             { needToSignIn() && <div className="sign-in-arrow"><i className="fa fa-arrow-up fa-4x"></i></div> }
             <form className="recipe-form" >
                 <div className="recipe-creation-header"> <h2>Recipe Creation Station</h2></div>
-                { (step === 1) && <label htmlFor="title" className="form-title" >
-                    <h2>Step 1</h2>
+
+                { (step === 2) && <label htmlFor="title" className="form-title" >
+                    <h2>Step 2</h2>
                     Give your recipe a name...
                     <input type="text" name="title" maxLength="18" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
                 </label> }
 
-                { (step === 2) &&  <label htmlFor="photo" className="form-photo" >
-                    <h2>Step 2</h2>
+                { (step === 1) &&  <label htmlFor="photo" className="form-photo" >
+                    <h2>Step 1</h2>
                     Upload a photo of your dish...
                             <input type="file" accept="image/*" onChange={onSelectFile} />
                         <div className="crop-container">
@@ -238,9 +245,10 @@ function preparePhotoForUpload () {
 
                 { step === 4 && (<div className="create-button-container">
                             <h2>Step 4</h2>
-                            { isUserSignedIn() ? 'Publish your recipe!' : 'Please sign-in to share your recipe.' }
+                            { submitted ? 'You have published your recipe!' : (isUserSignedIn() ? 'Publish your recipe!' : 'Please sign-in to share your recipe.')}
+                            {/* { isUserSignedIn() ? 'Publish your recipe!' : 'Please sign-in to share your recipe.' } */}
                             <div> { isUserSignedIn() ?
-                              <button onClick={ createRecipe } className="submit-button" ><div className="submit-button-inner"> <div className="flashers-1"></div><div className="flashers-2"></div> </div><div className="flashers-3"></div></button> 
+                              <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers-1"></div><div className="flashers-2"></div><div className="flashers-3"></div> </> }</div></button> 
                             : <button className="submit-button-fake" > <div></div></button>  } </div>   
                                 </div>) } 
 
@@ -253,7 +261,7 @@ function preparePhotoForUpload () {
 
             <div className="draft-recipe-card-container">
                 <div className="recipe-card-creation">
-                    <div className={`recipe-card-inner-creation ${step === 3 ? 'flip' : '' }`}>
+                    <div className={`recipe-card-inner-creation ${step === 3 ? 'flip' : '' } ${submitted ? 'spin' : ''}`}>
                         
                         <div className="recipe-card-front-creation">
                             <div className="image-container-creation" >

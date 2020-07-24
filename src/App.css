@@ -605,6 +605,14 @@
   transform: rotateY(180deg);
 }
 
+.spin {
+  transform: rotateY(1080deg);
+}
+
+.spin:hover {
+  transform: rotateY(1260deg);
+}
+
 /* Position the front and back side */
 .recipe-card-front-creation, .recipe-card-back-creation {
   position: absolute;
