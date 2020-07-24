@@ -67,18 +67,8 @@ function App() {
 
   function authStateObserver(user) {
     if (user) { // User is signed in!
-      // Get the signed-in user's profile pic and name.
-      var profilePicUrl = getProfilePicUrl();
-      var userName = getUserName();
-      // Set the user's profile pic and name.
-      // Show user's profile and sign-out button.
       setIsLoggedIn(true);
-      // Hide sign-in button.
-      // We save the Firebase Messaging Device token and enable notifications.
-    } else { // User is signed out!
-      // Hide user's profile and sign-out button.
-      
-      // Show sign-in button.
+    } else { // User is signed out!      
       setIsLoggedIn(false);
     }
   }
@@ -91,11 +81,6 @@ function App() {
     return firebase.auth().currentUser.displayName;
   }
 
-  function isUserSignedIn() {
-    //this returns true is a user is signed in.... maybe that state takes care of this job?
-    return !!firebase.auth().currentUser;
-  }
-
 
   return (
     <div className="App">
@@ -103,19 +88,19 @@ function App() {
         <div className="logo" onClick={() => setCurrentDisplay('home') }>
           <img src={ logo } alt="" className="logo-image"/>
         </div>
-        <div className="new-recipe" >
+        <div className="new-recipe" title='Add Your Recipe' >
           <div className="new-recipe-icon-container" onClick={() => setCurrentDisplay('new-recipe') }>
             <i className="fa fa-camera fa-2x"></i>
             <i className="fa fa-plus-circle"></i>
           </div>
         </div>
-        <div className="home" onClick={() => setCurrentDisplay('home') }><i className="fa fa-home fa-2x"></i></div>
+        <div className="home" title='Home' onClick={() => setCurrentDisplay('home') }><i className="fa fa-home fa-2x"></i></div>
         <div className="log-in-out">
           { isLoggedIn ? 
-            <div className="signed-in" onClick={ signOut }>
+            <div className="signed-in" title={ getUserName() } onClick={ signOut }>
               <img src={`${ getProfilePicUrl() }`} alt="Nothing" className="user-pic" />
             </div> :
-            <div className="sign-in" onClick={ signIn }><i className="fa fa-user fa-2x"></i></div>}
+            <div className="sign-in" title='Sign-In' onClick={ signIn }><i className="fa fa-user fa-2x"></i></div>}
         </div>
       </header>
       <div className="current-display"> 

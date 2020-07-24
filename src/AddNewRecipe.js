@@ -16,34 +16,12 @@ const AddNewRecipe = () => {
 
     const [recipeTitle, setRecipeTitle] = useState('');    
     const [recipeDescription, setRecipeDescription] = useState('');
-    const [recipePhoto, setRecipePhoto] = useState(null);
     const [step, setStep] = useState(1);
     const [submitted, setSubmitted] = useState(false);
 
     const pixelRatio = 4;
 
-// We resize the canvas down when saving on retina devices otherwise the image
-// will be double or triple the preview size.
-function getResizedCanvas(canvas, newWidth, newHeight) {
-  const tmpCanvas = document.createElement("canvas");
-  tmpCanvas.width = newWidth;
-  tmpCanvas.height = newHeight;
 
-  const ctx = tmpCanvas.getContext("2d");
-  ctx.drawImage(
-    canvas,
-    0,
-    0,
-    canvas.width,
-    canvas.height,
-    0,
-    0,
-    newWidth,
-    newHeight
-  );
-
-  return tmpCanvas;
-}
 
     //I want the display to change to home Display upon Recipe Creation
 
