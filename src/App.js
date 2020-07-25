@@ -93,7 +93,7 @@ function App() {
   return (
     <div className="App">
       <header className="header">
-        <div className="logo" onClick={() => setCurrentDisplay('home') }>
+        <div id="logo" onClick={() => setCurrentDisplay('home') }>
           <img src={ logo } alt="" className="logo-image"/>
         </div>
         <div className="new-recipe" title='Add Your Recipe' >
