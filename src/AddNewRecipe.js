@@ -197,7 +197,7 @@ function preparePhotoForUpload () {
                 { (step === 2) && <label htmlFor="title" className="form-title" >
                     <h2>Step 2</h2>
                     Give your recipe a name...
-                    <input type="text" name="title" maxLength="18" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
+                    <input type="text" name="title" maxLength="21" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
                 </label> }
 
                 { (step === 1) &&  <label htmlFor="photo" className="form-photo" >
@@ -232,8 +232,8 @@ function preparePhotoForUpload () {
 
 
                 <div className="form-button-container">
-                    { previousStepPossible() ? <div className="previous-step-button"><i className="fa fa-arrow-left fa-4x" onClick={ previousStep }></i></div> : ''}
-                    { nextStepPossible() ? <div className="next-step-button" ><i className="fa fa-arrow-right fa-4x" onClick={ nextStep }></i></div> : '' }
+                    { previousStepPossible() ? <div className="previous-step-button"><i className="fa fa-arrow-left fa-3x" onClick={ previousStep }></i></div> : ''}
+                    { nextStepPossible() ? <div className="next-step-button" ><i className="fa fa-arrow-right fa-3x" onClick={ nextStep }></i></div> : '' }
                 </div>
             </form>
 
@@ -246,8 +246,8 @@ function preparePhotoForUpload () {
                             <canvas
                                 ref={previewCanvasRef}
                                 style={{
-                                    width: "369px",
-                                    height: "360px",
+                                    width: "22vw",
+                                    height: "22vw",
                                 }}
                                 />
                             </div>
