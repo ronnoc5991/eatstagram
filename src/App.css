@@ -4,14 +4,23 @@
   text-align: center;
   background-color: rgb(255, 255, 255);
   width: 100%;
-  /* display: grid;
-  grid-template-rows: 10vh 90vh; */
   overflow-x: hidden;
   display: flex;
   justify-content: center;
-  /* font-family: 'Rock Salt', cursive; */
   font-family: 'Walter Turncoat', cursive;
 }
+
+.current-display {
+  margin-top: 10vh;
+  width: 100%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------ Header ------------------------------------------ */
 
 .header {
   background-color: rgb(251,251,251);
@@ -34,17 +43,12 @@
 .header div:hover {
   cursor: pointer;
 }
-
-
-/* ---------------------------------------------------------------------- */
  
 #logo {
   margin-left: 4vw;
   margin-right: auto;
   margin-top: 2vh;
 }
-/* ---------------------------------------------------------------------- */
-
 
 #logo img {
   height: 10vh;
@@ -55,8 +59,6 @@
   color: rgb(148, 148, 148);
 }
 
-/* ---------------------------------------------------------------------- */
-
 
 .new-recipe-icon-container {
   margin-right: 3vw;
@@ -64,7 +66,6 @@
   width: 4vw;
 }
 
-/* ---------------------------------------------------------------------- */
 
 .new-recipe-icon-container:hover {
   color: #C70017;
@@ -80,35 +81,24 @@
   color: rgb(251,251,251);
 }
 
-/* ---------------------------------------------------------------------- */
 
 .home {
   margin-right: 3vw;
   color: rgb(148, 148, 148);
 }
-/* ---------------------------------------------------------------------- */
 
 .home:hover {
   color: #C70017;
 }
-/* ---------------------------------------------------------------------- */
 
 .log-in-out {
   display: flex;
   margin-right: 4vw;
 }
 
-.current-display {
-  margin-top: 10vh;
-  width: 100%;
-  overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
+/* -------------------------------------------------------------------------------------------- */
 
-/* -------------------- SIGNED-IN-USER -------------------- */
+/* -------------------------------------- SIGNED-IN-USER -------------------------------------- */
 
 .sign-in {
   color: rgb(148, 148, 148);
@@ -118,16 +108,18 @@
   color: #C70017;
 }
 
-.user-name {
+/* .user-name {
   margin: auto;
-}
+} */
 
 .user-pic {
   height: 7vh;
   width: 7vh;
   border-radius: 50%;
-  /* right: 15px; */
 }
+
+/* ------------------------------------------ Home Display ------------------------------------------ */
+
 
 .home-view {
   width: 90vw;
@@ -186,7 +178,146 @@
 }
 
 
-/* -------------------- ADD NEW RECIPE -------------------- */
+/* ------------------------------------------ Home View Recipe Cards ------------------------------------------ */
+
+
+
+.recipe-card {
+  background-color: transparent;
+  min-width: 205px;
+  width: 16vw;
+  min-height: calc(205px * 1.22);
+  height: calc(16vw * 1.22);
+  perspective: 1000px;
+  margin: 1vw;
+}
+
+
+/* This container is needed to position the front and back side */
+.recipe-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  box-shadow: 0px 0px 13px 0px #8a8a8a;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.recipe-card:hover .recipe-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.recipe-card-front, .recipe-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.recipe-card-front {
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/cream-pixels.png");
+  color: black;
+  display: grid;
+  /* grid-template-rows: 277px 59px; */
+  grid-template-rows: 4.7fr 1fr;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.image-container {
+  margin-top: 6%;
+  margin-bottom: auto;
+  justify-self: center;
+  width: 88%;
+}
+
+.image-container img {
+  width: 100%;
+  transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.recipe-front-text {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  align-self: end;
+  font-size: .7vw;
+  margin-bottom: 1vw;
+}
+
+.recipe-card-back {
+  background-color: white;
+  color: black;
+  transform: rotateY(180deg);
+  text-align: center;
+  border-radius: 2px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 4fr;
+  overflow: hidden;
+}
+
+.recipe-back-title {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  font-size: .6vw;
+  overflow: hidden;
+}
+
+.recipe-back-description {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  font-size: .9vw;
+  width: 90%;
+  margin: 0px auto;
+  text-align: center;
+  overflow: hidden;
+  font-family: 'Walter Turncoat', cursive;
+}
+
+.recipe-back-author-container {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  position: relative;
+}
+
+.recipe-back-author {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-size: .7vw;
+}
+
+.recipe-back-author-pic img {
+  min-width: 5vh;
+  width: 3vw;
+  min-height: 5vh;
+  height: 3vw;
+  border-radius: 50%;
+  background-color: grey;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  transition: all 300ms;
+  transform-origin: center;
+}
+
+.recipe-back-author-pic img:hover {
+  width: 10vh;
+  height: 10vh;
+}
+
+
+/* ------------------------------------------ Add Recipe Display ------------------------------------------ */
 
 .new-recipe-view {
   height: 90vh;
@@ -459,198 +590,15 @@
   margin: auto;
 }
 
-/* -------------------- RECIPE CARDS -------------------- */
 
-.recipe-card {
-  background-color: transparent;
-  /* width: 276px;
-  height: 336px; */
-  width: 16vw;
-  height: calc(16vw * 1.22);
-  perspective: 1000px;
-  /* margin: 20px; */
-  margin: 1vw;
-}
-
-
-/* This container is needed to position the front and back side */
-.recipe-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-  box-shadow: 0px 0px 13px 0px #8a8a8a;
-}
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.recipe-card:hover .recipe-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Position the front and back side */
-.recipe-card-front, .recipe-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
-}
-
-/* Style the front side (fallback if image is missing) */
-.recipe-card-front {
-  background-color: #ffffff;
-  background-image: url("https://www.transparenttextures.com/patterns/cream-pixels.png");
-  color: black;
-  display: grid;
-  /* grid-template-rows: 277px 59px; */
-  grid-template-rows: 4.6fr 1fr;
-  text-align: center;
-  border-radius: 2px;
-}
-
-/* .image {
-  margin-top: 18px;
-  justify-self: center;
-  width: 246px;
-  height: 240px;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-} */
-
-.image-container {
-  margin-top: .75vw;
-  justify-self: center;
-  width: 14.5vw;
-  height: 14.5vw;
-  background-color: white;
-  /* display: block; */
-  position: relative;
-  overflow: hidden;
-}
-
-.image-container img {
-  /* position: absolute; */
-  /* top: -15%;
-  left: 0; */
-  width: 100%;
-  transform: translate3d(0,0,0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.recipe-front-text {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  align-self: end;
-  /* font-size: 12px; */
-  font-size: .5vw;
-  margin-bottom: 1vh;
-}
-
-.recipe-card-back {
-  background-color: white;
-  color: black;
-  /* height: 336px;
-  width: 276px; */
-  /* height: 100%;
-  width: 100%; */
-  transform: rotateY(180deg);
-  text-align: center;
-  border-radius: 2px;
-  display: grid;
-  grid-template-rows: 1fr 1fr 4fr;
-  overflow: hidden;
-}
-
-
-.recipe-back-title {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  font-size: 1vh;
-  overflow: hidden;
-}
-
-.recipe-back-description {
-  grid-row-start: 3;
-  grid-row-end: 4;
-  font-size: 1.5vh;
-  width: 90%;
-  margin: 0px auto;
-  text-align: center;
-  overflow: hidden;
-  font-family: 'Walter Turncoat', cursive;
-}
-
-.recipe-back-author-container {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  position: relative;
-}
-
-.recipe-back-author {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  font-size: 1.5vh;
-}
-
-.recipe-back-author-pic img {
-  width: 3vw;
-  height: 3vw;
-  border-radius: 50%;
-  background-color: grey;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  position: absolute;
-  left: 50%;
-  bottom: 50%;
-  transform: translate(-50%, 50%);
-  transition: all 300ms;
-  transform-origin: center;
-}
-
-.recipe-back-author-pic img:hover {
-  width: 5vw;
-  height: 5vw;
-}
-
-/* -------------- DEMO CARDS FOR CARD CREATION -------------- */
-
-.polaroid-development {
-  margin-top: 19px;
-  justify-self: center;
-  width: 300px;
-  height: 308px;
-  opacity: 1;
-  position: absolute;
-  background-color: black;
-  z-index: 2;
-  transition: all 2000ms;
-}
-
-.develop {
-  opacity: 0;
-  background-color: white;
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------- Add Recipe Draft Card --------------------------------------------------------------------------------------- */
 
 
 .recipe-card-creation {
   background-color: transparent;
-  /* width: 276px;
-  height: 336px; */
-  /* width: 414px;
-  height: 504px; */
   height: calc(24vw * 1.22);
   width: 24vw;
   perspective: 1000px;
-  /* margin: 20px; */
 }
 
 
@@ -696,7 +644,6 @@
   background-image: url("https://www.transparenttextures.com/patterns/cream-pixels.png");
   color: black;
   display: grid;
-  /* grid-template-rows: 415px 89px; */
   grid-template-rows: 4.6fr 1fr;
   text-align: center;
   border-radius: 2px;
@@ -717,19 +664,15 @@
 .image-container-creation {
   margin-top: 1vw;
   justify-self: center;
-  /* width: 369px;
-  height: 360px; */
   width: 22vw;
   height: 22vw;
   background-color: transparent;
-  /* display: block; */
   position: relative;
   overflow: hidden;
 }
 
 .image-container-creation img {
   position: absolute;
-  /* top: -15%; */
   left: 0;
   width: 100%;
   /* transform: translate3d(0,0,0); */
@@ -748,8 +691,6 @@
 .recipe-card-back-creation {
   background-color: white;
   color: black;
-  /* height: 100%;
-  width: 100%; */
   transform: rotateY(180deg);
   text-align: center;
   border-radius: 4px;
@@ -814,4 +755,76 @@
   max-width: 50%;
   margin: auto;
   /* max-height: 100%; */
+}
+
+@media (max-width: 1000px) {
+  .recipe-front-text {
+    font-size: 1vw;
+  }
+
+  .recipe-back-title {
+    font-size: .8vw;
+  }
+
+  .recipe-back-description {
+    font-size: 1.2vw;
+  }
+
+  .recipe-back-author {
+    font-size: 1.1vw;
+  }
+}
+
+@media (max-width: 750px) {
+  .recipe-front-text {
+    font-size: 1.3vw;
+  }
+
+  .recipe-back-title {
+    font-size: 1.1vw;
+  }
+
+  .recipe-back-description {
+    font-size: 1.7vw;
+  }
+
+  .recipe-back-author {
+    font-size: 1.35vw;
+  }
+}
+
+@media (max-width: 550px) {
+  .recipe-front-text {
+    font-size: 1.8vw;
+  }
+
+  .recipe-back-title {
+    font-size: 1.5vw;
+  }
+
+  .recipe-back-description {
+    font-size: 2.3vw;
+  }
+
+  .recipe-back-author {
+    font-size: 2vw;
+  }
+}
+
+@media (max-width: 365px) {
+  .recipe-front-text {
+    font-size: 3vw;
+  }
+
+  .recipe-back-title {
+    font-size: 1vh;
+  }
+
+  .recipe-back-description {
+    font-size: 1.5vh;
+  }
+
+  .recipe-back-author {
+    font-size: 1.5vh;
+  }
 }
