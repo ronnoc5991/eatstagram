@@ -561,9 +561,9 @@
 
 .recipe-card-creation {
   background-color: transparent;
-  min-width: 350px;
+  min-width: 280px;
   width: 24vw;
-  min-height: calc(350px * 1.22);
+  min-height: calc(280px * 1.22);
   height: calc(24vw * 1.22);
   perspective: 1000px;
 }
@@ -693,9 +693,9 @@
 }
 
 .recipe-back-author-pic-creation img {
-  min-width: 7vh;
+  min-width: 6vh;
   width: 4vw;
-  min-height: 7vh;
+  min-height: 6vh;
   height: 4vw;
   border-radius: 50%;
   background-color: grey;

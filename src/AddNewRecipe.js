@@ -246,9 +246,9 @@ function preparePhotoForUpload () {
                             <canvas
                                 ref={previewCanvasRef}
                                 style={{
-                                    minWidth: "308px",
+                                    minWidth: "246.4px",
                                     width: "22vw",
-                                    minHeight: "308px",
+                                    minHeight: "246.4px",
                                     height: "22vw",
                                 }}
                                 />
