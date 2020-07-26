@@ -323,7 +323,7 @@
   height: 90vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: minmax(300px, 25vw) 1fr;
+  grid-template-columns: minmax(250px, 25vw) 1fr;
   position: relative;
 }
 
@@ -540,6 +540,7 @@
   animation-name: point-up;
   animation-duration: 1000ms;
   animation-iteration-count: infinite;
+  z-index: 10;
 }
 
 @keyframes point-up {
