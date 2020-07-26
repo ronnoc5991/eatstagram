@@ -226,7 +226,7 @@ function preparePhotoForUpload () {
                             { submitted ? 'You have published your recipe!' : (isUserSignedIn() ? 'Publish your recipe!' : 'Please sign-in to share your recipe.')}
                             {/* { isUserSignedIn() ? 'Publish your recipe!' : 'Please sign-in to share your recipe.' } */}
                             <div> { isUserSignedIn() ?
-                              <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers-1"></div><div className="flashers-2"></div><div className="flashers-3"></div> </> }</div></button> 
+                              <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers flasher-1"></div><div className="flashers flasher-2"></div><div className="flashers flasher-3"></div> </> }</div></button> 
                             : <button className="submit-button-fake" > <div></div></button>  } </div>   
                                 </div>) } 
 
@@ -246,7 +246,9 @@ function preparePhotoForUpload () {
                             <canvas
                                 ref={previewCanvasRef}
                                 style={{
+                                    minWidth: "308px",
                                     width: "22vw",
+                                    minHeight: "308px",
                                     height: "22vw",
                                 }}
                                 />
