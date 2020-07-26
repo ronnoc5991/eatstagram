@@ -263,7 +263,7 @@ function preparePhotoForUpload () {
                             <div className="recipe-back-description-creation" ><p> { recipeDescription } </p></div>
                             <div className="recipe-back-author-container-creation">
                                 <div className="recipe-back-author-creation" ><p> { isUserSignedIn() ? getUserName() : 'YOUR NAME HERE' } </p></div>
-                                <div className="recipe-back-author-pic-creation" > { isUserSignedIn() ? <img src={getProfilePicUrl()} alt=""/> : <i className="fa fa-user fa-5x"></i> } </div>
+                                <div className="recipe-back-author-pic-creation" > { isUserSignedIn() ? <img src={getProfilePicUrl()} alt=""/> : <i className="fa fa-user fa-3x"></i> } </div>
                             </div>
                         </div>
                     
