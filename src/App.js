@@ -96,19 +96,18 @@ function App() {
         <div id="logo" onClick={() => setCurrentDisplay('home') }>
           <img src={ logo } alt="" className="logo-image"/>
         </div>
-        <div className="new-recipe" title='Add Your Recipe' >
-          <div className="new-recipe-icon-container" onClick={() => setCurrentDisplay('new-recipe') }>
-            <i className="fa fa-camera fa-2x"></i>
-            <i className="fa fa-plus-circle"></i>
+        {/* <div className="new-recipe" title='Add Your Recipe' > */}
+          <div className="new-recipe" id="new-recipe-icon-container" title="Add Your Recipe" onClick={() => setCurrentDisplay('new-recipe') }>
+            <i className="fa fa-camera"></i>
           </div>
-        </div>
-        <div className="home" title='Home' onClick={() => setCurrentDisplay('home') }><i className="fa fa-home fa-2x"></i></div>
+        {/* </div> */}
+        <div className="home" title='Home' onClick={() => setCurrentDisplay('home') }><i className="fa fa-home fa-lg"></i></div>
         <div className="log-in-out">
           { isLoggedIn ? 
             <div className="signed-in" title={ getUserName() } onClick={ signOut }>
               <img src={`${ getProfilePicUrl() }`} alt="Nothing" className="user-pic" />
             </div> :
-            <div className="sign-in" title='Sign-In' onClick={ signIn }><i className="fa fa-user fa-2x"></i></div>}
+            <div className="sign-in" title='Sign-In' onClick={ signIn }><i className="fa fa-user fa-lg"></i></div>}
         </div>
       </header>
       <div className="current-display"> 

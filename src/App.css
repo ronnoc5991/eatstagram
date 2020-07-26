@@ -29,15 +29,17 @@
   display: flex;
   overflow: hidden;
   position: fixed;
+  align-items: center;
   width: 100vw;
   z-index: 3;
 }
 
 .header div {
-  align-self: center;
+  /* align-self: center; */
   transition: transform 300ms;
   transform-origin: center;
-  margin-top: 0.5vh
+  margin-left: 3%;
+  /* margin-top: 0.5vh */
 }
 
 .header div:hover {
@@ -60,30 +62,25 @@
 }
 
 
-.new-recipe-icon-container {
-  margin-right: 3vw;
+#new-recipe-icon-container {
   margin-top: 1vh;
-  width: 4vw;
+  width: 24px;
 }
 
 
-.new-recipe-icon-container:hover {
+#new-recipe-icon-container i:hover {
   color: #C70017;
 }
 
-.new-recipe-icon-container i{
+#new-recipe-icon-container i{
   position: absolute;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-}
-
-.fa-plus-circle {
-  color: rgb(251,251,251);
+  color: rgb(148, 148, 148);
 }
 
 
 .home {
-  margin-right: 3vw;
   color: rgb(148, 148, 148);
 }
 

@@ -232,8 +232,8 @@ function preparePhotoForUpload () {
 
 
                 <div className="form-button-container">
-                    { previousStepPossible() ? <div className="previous-step-button"><i className="fa fa-arrow-left fa-3x" onClick={ previousStep }></i></div> : ''}
-                    { nextStepPossible() ? <div className="next-step-button" ><i className="fa fa-arrow-right fa-3x" onClick={ nextStep }></i></div> : '' }
+                    { previousStepPossible() ? <div className="previous-step-button"><i className="fa fa-arrow-left fa-2x" onClick={ previousStep }></i></div> : ''}
+                    { nextStepPossible() ? <div className="next-step-button" ><i className="fa fa-arrow-right fa-2x" onClick={ nextStep }></i></div> : '' }
                 </div>
             </form>
 
