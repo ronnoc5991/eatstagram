@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bff22cb90289dac1d9ab6589399ff441",
+    "revision": "75bca3eeca2ee32830fc4240d9997494",
     "url": "/eatstagram-react/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eatstagram-react/static/css/2.82d3b9cd.chunk.css"
   },
   {
-    "revision": "35dbf040aa43ecb9e375",
+    "revision": "7e5a04e78afde9aae260",
     "url": "/eatstagram-react/static/css/main.babddea7.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eatstagram-react/static/js/2.6af6454c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "35dbf040aa43ecb9e375",
-    "url": "/eatstagram-react/static/js/main.bdbbf146.chunk.js"
+    "revision": "7e5a04e78afde9aae260",
+    "url": "/eatstagram-react/static/js/main.bf149901.chunk.js"
   },
   {
     "revision": "8204f2235c54cabb2a16",
