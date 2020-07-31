@@ -17,7 +17,7 @@ function App() {
   const [currentDisplay, setCurrentDisplay] = useState('home');  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
     console.log('log in status changed')
