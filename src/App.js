@@ -3,6 +3,8 @@ import './App.css';
 import Home from './Home';
 import AddNewRecipe from './AddNewRecipe';
 import logo from './eatstagram-logo.png';
+import lid from './lid.png'
+import fridge from './fridge.png'
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
@@ -17,7 +19,7 @@ function App() {
   const [currentDisplay, setCurrentDisplay] = useState('home');  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(20);
 
   useEffect(() => {
     console.log('log in status changed')
@@ -82,7 +84,7 @@ function App() {
   }
 
   function loadMoreRecipes () {
-    setLimit(limit + 5);
+    setLimit(limit + 10);
   }
 
   useEffect(() => {
@@ -92,24 +94,32 @@ function App() {
 
   return (
     <div className="App">
+      
       <header className="header">
+        
         <div id="logo" onClick={() => setCurrentDisplay('home') }>
           <img src={ logo } alt="" className="logo-image"/>
         </div>
-        {/* <div className="new-recipe" title='Add Your Recipe' > */}
-          <div className="new-recipe" id="new-recipe-icon-container" title="Add Your Recipe" onClick={() => setCurrentDisplay('new-recipe') }>
-            <i className="fa fa-camera"></i>
+        
+        <div className="icon-container">
+          <div className="sliding-rect">
+            <img src={ fridge } alt=""/>
           </div>
-        {/* </div> */}
-        <div className="home" title='Home' onClick={() => setCurrentDisplay('home') }><i className="fa fa-home fa-lg"></i></div>
-        <div className="log-in-out">
+
+          <i className="fa fa-camera" title="Add Your Recipe" onClick={() => setCurrentDisplay('new-recipe') }></i>
+
+          <i className="fa fa-home fa-lg" title='Home' onClick={() => setCurrentDisplay('home') }></i>
+
           { isLoggedIn ? 
             <div className="signed-in" title={ getUserName() } onClick={ signOut }>
               <img src={`${ getProfilePicUrl() }`} alt="Nothing" className="user-pic" />
             </div> :
             <div className="sign-in" title='Sign-In' onClick={ signIn }><i className="fa fa-user fa-lg"></i></div>}
+
         </div>
+
       </header>
+      
       <div className="current-display"> 
         { currentDisplay === 'home' && <><Home recipeCollection={ recipes } /> 
             <div className="more-recipes-container" onClick={ loadMoreRecipes } >

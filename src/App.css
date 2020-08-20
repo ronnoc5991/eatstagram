@@ -4,7 +4,7 @@
   text-align: center;
   background-color: rgb(255, 255, 255);
   background-image: url(./background1.jpg);
-  background-size: 400px;
+  background-size: 350px;
   width: 100%;
   overflow-x: hidden;
   display: flex;
@@ -13,7 +13,7 @@
 }
 
 .current-display {
-  margin-top: 10vh;
+  margin-top: 8vh;
   width: 100%;
   overflow: hidden;
   margin-left: auto;
@@ -36,58 +36,46 @@
   z-index: 6;
 }
 
-.header div {
-  /* align-self: center; */
-  transition: transform 300ms;
-  transform-origin: center;
-  margin-left: 3%;
-  /* margin-top: 0.5vh */
+.icon-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 180px;
+  margin-right: 50px;
+  align-items: center;
+  position: relative;
+  /* border: 3px solid red; */
 }
 
-.header div:hover {
+.icon-container:hover .sliding-rect {
+  transform: translateX(-180px);
+}
+
+.icon-container:hover .sliding-rect img {
+  transform: rotate(-15deg);
+}
+
+.header i {
+  
+}
+
+.header i:hover {
   cursor: pointer;
+  color: #C70017;
 }
  
 #logo {
-  margin-left: 4vw;
+  margin-left: 40px;
   margin-right: auto;
   margin-top: 2vh;
 }
 
 #logo img {
-  height: 10vh;
+  height: 70px;
   pointer-events: none;
 }
 
-.new-recipe {
-  color: rgb(148, 148, 148);
-}
-
-
-#new-recipe-icon-container {
-  margin-top: 1vh;
-  width: 24px;
-}
-
-
-#new-recipe-icon-container i:hover {
-  color: #C70017;
-}
-
-#new-recipe-icon-container i{
-  position: absolute;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  color: rgb(148, 148, 148);
-}
-
-
-.home {
-  color: rgb(148, 148, 148);
-}
-
-.home:hover {
-  color: #C70017;
+#logo:hover {
+  cursor: pointer;
 }
 
 .log-in-out {
@@ -95,26 +83,49 @@
   margin-right: 4vw;
 }
 
+.fa-lg {
+  vertical-align: -5%;
+}
+
+.sliding-rect {
+  position: absolute;
+  background-color: rgb(251,251,251);
+  right: 0;
+  left: 0;
+  height: 8vh;
+  transition: all 250ms linear;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.sliding-rect img {
+  height: 100%;
+}
+
 /* -------------------------------------------------------------------------------------------- */
 
 /* -------------------------------------- SIGNED-IN-USER -------------------------------------- */
-
-.sign-in {
-  color: rgb(148, 148, 148);
-}
 
 .sign-in:hover {
   color: #C70017;
 }
 
-/* .user-name {
-  margin: auto;
-} */
+.signed-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signed-in: hover {
+  cursor: pointer;
+}
 
 .user-pic {
-  height: 7vh;
-  width: 7vh;
+  height: 6vh;
+  width: 6vh;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 /* ------------------------------------------ Home Display ------------------------------------------ */
@@ -199,7 +210,7 @@
   height: 100%;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-  box-shadow: 0px 0px 13px 0px #8a8a8a;
+  box-shadow: 0px 0px 10px 5px #6b6b6b;
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
@@ -319,7 +330,7 @@
 /* ------------------------------------------ Add Recipe Display ------------------------------------------ */
 
 .new-recipe-view {
-  height: 90vh;
+  height: 92vh;
   width: 100vw;
   display: grid;
   grid-template-columns: minmax(250px, 25vw) 1fr;
