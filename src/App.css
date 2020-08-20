@@ -37,13 +37,13 @@
 }
 
 .icon-container {
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 180px;
   margin-right: 50px;
   align-items: center;
   position: relative;
-  /* border: 3px solid red; */
 }
 
 .icon-container:hover .sliding-rect {
@@ -52,10 +52,6 @@
 
 .icon-container:hover .sliding-rect img {
   transform: rotate(-15deg);
-}
-
-.header i {
-  
 }
 
 .header i:hover {
@@ -115,10 +111,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.signed-in: hover {
-  cursor: pointer;
 }
 
 .user-pic {
