@@ -6,7 +6,6 @@ import logo from './eatstagram-logo.png';
 import fridge from './fridge.png'
 import tomato from './tomato.png'
 import knife from './knife.png'
-import knife2 from './knife2.png'
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
