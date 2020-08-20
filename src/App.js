@@ -3,8 +3,8 @@ import './App.css';
 import Home from './Home';
 import AddNewRecipe from './AddNewRecipe';
 import logo from './eatstagram-logo.png';
-import lid from './lid.png'
 import fridge from './fridge.png'
+import dish from './dish.png'
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
@@ -123,8 +123,8 @@ function App() {
       <div className="current-display"> 
         { currentDisplay === 'home' && <><Home recipeCollection={ recipes } /> 
             <div className="more-recipes-container" onClick={ loadMoreRecipes } >
-              <div className="more-recipes-title" >More Recipes</div>
-              <div className="more-recipes-icon"><i className="fa fa-chevron-down"></i></div>
+              <div className="more-recipes-title" >More</div>
+              <img src={ dish } alt=""/>
             </div></>  }
         { currentDisplay === 'new-recipe' && <AddNewRecipe />}
       </div>

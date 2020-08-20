@@ -40,14 +40,14 @@
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 180px;
-  margin-right: 50px;
+  width: 150px;
+  margin-right: 5vw;
   align-items: center;
   position: relative;
 }
 
 .icon-container:hover .sliding-rect {
-  transform: translateX(-180px);
+  transform: translateX(-150px);
 }
 
 .icon-container:hover .sliding-rect img {
@@ -60,13 +60,14 @@
 }
  
 #logo {
-  margin-left: 40px;
+  margin-left: 5vw;
   margin-right: auto;
   margin-top: 2vh;
+  z-index: 10;
 }
 
 #logo img {
-  height: 70px;
+  height: 8vh;
   pointer-events: none;
 }
 
@@ -114,8 +115,8 @@
 }
 
 .user-pic {
-  height: 6vh;
-  width: 6vh;
+  height: 70%;
+  width: 70%;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -134,13 +135,23 @@
 
 .more-recipes-container {
   display: flex;
+  justify-content: center;
+  margin: auto;
   margin-top: 1vw;
   margin-bottom: 3vw;
   flex-wrap: wrap;
   cursor: pointer;
-  width: 11vw;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
+  background-color: white;
+  box-shadow: 0px 0px 5px 5px #6b6b6b;
+}
+
+.more-recipes-container img {
+  height: 50%;
 }
 
 .more-recipes-container:hover div {
@@ -151,32 +162,22 @@
 .more-recipes-title {
   margin: auto;
   width: 100%;
-  animation-name: load;
+  /* animation-name: load;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out; */
 }
 
-@keyframes load {
+/* @keyframes load {
   0% { transform: scale(1) }
   50% { transform: scale(1.2)  }
   100% { transform: scale(1)  }
-}
+} */
 
 .more-recipes-icon {
   margin: auto;
-  animation-name: bob;
+  /* animation-name: bob;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
-
-.more-recipes-icon i {
-  pointer-events: none;
-}
-
-@keyframes bob {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(30px); }
-  100% { transform: translateY(0px); }
+  animation-timing-function: ease-in-out; */
 }
 
 
