@@ -4,7 +4,9 @@ import Home from './Home';
 import AddNewRecipe from './AddNewRecipe';
 import logo from './eatstagram-logo.png';
 import fridge from './fridge.png'
-import dish from './dish.png'
+import tomato from './tomato.png'
+import knife from './knife.png'
+import knife2 from './knife2.png'
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
@@ -94,6 +96,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="filter"></div>
       
       <header className="header">
         
@@ -122,10 +125,15 @@ function App() {
       
       <div className="current-display"> 
         { currentDisplay === 'home' && <><Home recipeCollection={ recipes } /> 
-            <div className="more-recipes-container" onClick={ loadMoreRecipes } >
-              <div className="more-recipes-title" >More</div>
-              <img src={ dish } alt=""/>
-            </div></>  }
+              <div className="more-recipes-container" onClick={ loadMoreRecipes } >
+                <div className="more-recipes-content" >
+                  <div className="knife-container"><img src={ knife } alt=""/></div>
+                  <div className="tomato-left tomato"><img src={tomato} alt=""/></div>
+                  <div className="more-words">More</div>
+                  <div className="tomato-right tomato"><img src={tomato} alt=""/></div>
+                </div>
+              </div>
+            </>  }
         { currentDisplay === 'new-recipe' && <AddNewRecipe />}
       </div>
     </div>
