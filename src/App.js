@@ -100,7 +100,8 @@ function App() {
       <header className="header">
         
         <div id="logo" onClick={() => setCurrentDisplay('home') }>
-          <img src={ logo } alt="" className="logo-image"/>
+          <img src={ tomato } alt="" className="logo-image"/>
+          <span>Eatstagram</span>
         </div>
         
         <div className="icon-container">
