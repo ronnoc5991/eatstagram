@@ -191,18 +191,15 @@ function preparePhotoForUpload () {
     return (
         <div className="new-recipe-view">
             { needToSignIn() && <div className="sign-in-arrow"><i className="fa fa-arrow-up fa-4x"></i></div> }
+
+            <div className="recipe-creation-header"> <h2>Recipe Creation Station</h2></div>
+            
             <form className="recipe-form" >
-                <div className="recipe-creation-header"> <h2>Recipe Creation Station</h2></div>
 
-                { (step === 2) && <label htmlFor="title" className="form-title" >
-                    <h2>Step 2</h2>
-                    Give your recipe a name...
-                    <input type="text" name="title" maxLength="21" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
-                </label> }
-
-                { (step === 1) &&  <label htmlFor="photo" className="form-photo" >
-                    <h2>Step 1</h2>
-                    Upload a photo of your dish...
+                { (step === 1) &&  
+                    <label htmlFor="photo" className="form-photo" >
+                        <h2>Step 1</h2>
+                            <span>Upload a photo of your dish...</span>
                             <input type="file" accept="image/*" onChange={onSelectFile} />
                         <div className="crop-container">
                             <ReactCrop
@@ -213,22 +210,31 @@ function preparePhotoForUpload () {
                                 onComplete={c => setCompletedCrop(c)}
                             />
                         </div>
-                </label>}
+                    </label>}
 
-                { (step === 3) && <label htmlFor="description" className="form-description" >
-                    <h2>Step 3</h2>
-                    Give a short description of your dish...
-                    <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
-                </label>}
+                { (step === 2) && 
+                    <label htmlFor="title" className="form-title" >
+                        <h2>Step 2</h2>
+                            <span>Give your recipe a name...</span>
+                            <input type="text" name="title" maxLength="21" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
+                    </label> }
+
+                { (step === 3) && 
+                    <label htmlFor="description" className="form-description" >
+                        <h2>Step 3</h2>
+                            <span>Give a short description of your dish...</span>
+                            <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
+                    </label>}
 
                 { step === 4 && (<div className="create-button-container">
-                            <h2>Step 4</h2>
+                        <h2>Step 4</h2>
                             { submitted ? 'You have published your recipe!' : (isUserSignedIn() ? 'Publish your recipe!' : 'Please sign-in to share your recipe.')}
-                            {/* { isUserSignedIn() ? 'Publish your recipe!' : 'Please sign-in to share your recipe.' } */}
-                            <div> { isUserSignedIn() ?
-                              <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers flasher-1"></div><div className="flashers flasher-2"></div><div className="flashers flasher-3"></div> </> }</div></button> 
-                            : <button className="submit-button-fake" > <div></div></button>  } </div>   
-                                </div>) } 
+                            <div> 
+                                { isUserSignedIn() ?
+                                    <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers flasher-1"></div><div className="flashers flasher-2"></div><div className="flashers flasher-3"></div> </> }</div></button> 
+                                :   <button className="submit-button-fake" > <div></div></button>  } 
+                            </div>   
+                            </div>) } 
 
 
                 <div className="form-button-container">
@@ -237,7 +243,7 @@ function preparePhotoForUpload () {
                 </div>
             </form>
 
-            <div className="draft-recipe-card-container">
+            {/* <div className="draft-recipe-card-container">
                 <div className="recipe-card-creation">
                     <div className={`recipe-card-inner-creation ${step === 3 ? 'flip' : '' } ${submitted ? 'spin' : ''}`}>
                         
@@ -269,7 +275,7 @@ function preparePhotoForUpload () {
                     
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
 
     )
