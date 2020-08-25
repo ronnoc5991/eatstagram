@@ -23,16 +23,12 @@ const AddNewRecipe = () => {
 
 
 
-    //I want the display to change to home Display upon Recipe Creation
 
     function createRecipe (e) {
         e.preventDefault();
         const photo = preparePhotoForUpload();
         saveRecipeWithImage(recipeTitle, recipeDescription, photo);
         setSubmitted(true);
-        // setRecipeTitle('');
-        // setRecipeDescription('');
-        // setRecipePhoto('')
     }
 
     function changeRecipeTitle (e) {
@@ -124,6 +120,8 @@ const imgRef = useRef(null);
 const previewCanvasRef = useRef(null);
 const [crop, setCrop] = useState({ unit: "%", width: 30, aspect: 1 / 1 });
 const [completedCrop, setCompletedCrop] = useState(null);
+const [fileSelected, setFileSelected] = useState(false);
+
 
 const onSelectFile = e => {
   if (e.target.files && e.target.files.length > 0) {
@@ -131,6 +129,7 @@ const onSelectFile = e => {
     reader.addEventListener("load", (e) => {
         setUpImg(reader.result);
         preparePhotoForUpload();
+        setFileSelected(true);
     });
     reader.readAsDataURL(e.target.files[0]);
   }
@@ -194,93 +193,91 @@ function preparePhotoForUpload () {
             
             <form className="recipe-form" >
 
-                { (step === 1) &&  
-                    <>
-                    <div className="step step-1">
-                            <h2>Upload a photo of your dish...</h2>
-                            <input type="file" accept="image/*" onChange={onSelectFile} />
-                        <div className="crop-container">
-                            <ReactCrop
-                                src={upImg}
-                                onImageLoaded={onLoad}
-                                crop={crop}
-                                onChange={c => setCrop(c)}
-                                onComplete={c => setCompletedCrop(c)}
-                            />
+
+                <div className={`step step-${step}`}>
+
+                    <h2> 
+                        {(step === 1) && 'Upload a photo of your dish'} 
+                        {(step === 2) && 'Give your recipe a name...'} 
+                        {(step === 3) && 'Give a short description of your dish...'} 
+                        {(step === 4) && 'Upload a photo of your dish'} 
+                    </h2>
+
+                    { (step === 3) &&
+                        <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
+                    }
+
+                    <div className="draft-recipe-card-container">
+                        <div className="recipe-card-creation">
+                            <div className={`recipe-card-inner-creation ${submitted ? 'spin' : ''}`}>
+                                    
+                                <div className="recipe-card-front-creation">
+                                    <div className={`image-container-creation ${(step===1) ? 'cropping' : 'finished-cropping'}`} >
+                                        { fileSelected ? 
+                                            <div className="crop-container">
+                                                <ReactCrop
+                                                    src={upImg}
+                                                    onImageLoaded={onLoad}
+                                                    crop={crop}
+                                                    onChange={c => setCrop(c)}
+                                                    onComplete={c => setCompletedCrop(c)}
+                                                />
+                                            </div> :
+                                            <input type="file" accept="image/*" onChange={onSelectFile} /> 
+                                        }
+
+                                        <canvas
+                                            ref={previewCanvasRef}
+                                            style={{
+                                                width: "246.4px",
+                                                height: "246.4px",    
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="recipe-front-text-creation">
+                                        { (step === 2 ) ? <input type="text" name="title" maxLength="21" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
+                                            : <h1> { recipeTitle } </h1>
+                                        }
+                                        {/* <h1> { recipeTitle } </h1> */}
+                                    </div>
+                                </div>
+                                
+                                <div className="recipe-card-back-creation">
+                                    <div className="recipe-back-title-creation" ><h1>{ recipeTitle }</h1></div>
+                                    <div className="recipe-back-description-creation" ><p> { recipeDescription } </p></div>
+                                    <div className="recipe-back-author-container-creation">
+                                        <div className="recipe-back-author-creation" ><p> { isUserSignedIn() ? getUserName() : 'YOUR NAME HERE' } </p></div>
+                                        <div className="recipe-back-author-pic-creation" > { isUserSignedIn() ? <img src={getProfilePicUrl()} alt=""/> : <i className="fa fa-user fa-3x"></i> } </div>
+                                    </div>
+                                </div>
+                            
+                            </div>
                         </div>
                     </div>
-                    <div className="step-counter"> {`${ step } / 4`} </div>
-                    </>
 
-                }
+                    <div className="step-counter"> {`${ step } / 4`} </div> 
 
-                { (step === 2) && 
-                    <div className="step step-2">
-                        {/* <label htmlFor="title" className="form-title" > */}
-                        <h2>Give your recipe a name...</h2>
-                        <input type="text" name="title" maxLength="21" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
-                        <div className="step-counter"> {`${ step } / 4`} </div>
 
-                        {/* </label>  */}
-                    </div>
-                }
+                </div>
 
-                { (step === 3) && 
-                    <div className="step step-3">
-                        {/* <label htmlFor="description" className="form-description" > */}
-                            <h2>Give a short description of your dish...</h2>
-                            <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
-                            <div className="step-counter"> {`${ step } / 4`} </div>
-                        {/* </label> */}
-                    </div>
-                }
+
+
+
+                
 
                 { step === 4 && (
                     <div className="step step-4">
                         
-                        { submitted ? <h2>You have published your recipe!</h2> : (isUserSignedIn() ? <h2>Publish your recipe!</h2> : <h2>Please sign-in to share your recipe.</h2>)}
-
-                                
-                                
-                         <div className="draft-recipe-card-container">
-                            <div className="recipe-card-creation">
-                                <div className={`recipe-card-inner-creation ${submitted ? 'spin' : ''}`}>
-                                    
-                                    <div className="recipe-card-front-creation">
-                                        <div className="image-container-creation" >
-                                        <canvas
-                                            ref={previewCanvasRef}
-                                            style={{
-                                                width: "180px",
-                                                height: "180px",
-                                            }}
-                                            />
-                                        </div>
-                                        <div className="recipe-front-text-creation">
-                                            <h1> { recipeTitle } </h1>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="recipe-card-back-creation">
-                                        <div className="recipe-back-title-creation" ><h1>{ recipeTitle }</h1></div>
-                                        <div className="recipe-back-description-creation" ><p> { recipeDescription } </p></div>
-                                        <div className="recipe-back-author-container-creation">
-                                            <div className="recipe-back-author-creation" ><p> { isUserSignedIn() ? getUserName() : 'YOUR NAME HERE' } </p></div>
-                                            <div className="recipe-back-author-pic-creation" > { isUserSignedIn() ? <img src={getProfilePicUrl()} alt=""/> : <i className="fa fa-user fa-3x"></i> } </div>
-                                        </div>
-                                    </div>
-                                
-                                </div>
-                            </div>
-                        </div>   
+                        { submitted ? <h2>You have published your recipe!</h2> : (isUserSignedIn() ? <h2>Publish your recipe!</h2> : <h2>Please sign-in to share your recipe.</h2>)}  
                                 
                                 
                         { isUserSignedIn() ?
                             <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers flasher-1"></div><div className="flashers flasher-2"></div><div className="flashers flasher-3"></div> </> }</div></button> 
-                        :   <button className="submit-button-fake" > <div></div></button>  } 
+                        :   <button className="submit-button-fake" > <div></div></button>  
+                        } 
             
-                        <div className="step-counter"> {`${ step } / 4`} </div>   
-                    </div>           ) } 
+                    </div>           
+                )} 
 
                 <div className="form-button-container">
                     { previousStepPossible() ? <div className="previous-step-button"><i className="fa fa-arrow-left fa-2x" onClick={ previousStep }></i></div> : ''}
@@ -289,49 +286,43 @@ function preparePhotoForUpload () {
             </form>
 
 
-
-
-
-            {/* <div className="draft-recipe-card-container">
-                <div className="recipe-card-creation">
-                    <div className={`recipe-card-inner-creation ${submitted ? 'spin' : ''}`}>
-                        
-                        <div className="recipe-card-front-creation">
-                            <div className="image-container-creation" >
-                            <canvas
-                                ref={previewCanvasRef}
-                                style={{
-                                    minWidth: "246.4px",
-                                    width: "22vw",
-                                    minHeight: "246.4px",
-                                    height: "22vw",
-                                }}
-                                />
-                            </div>
-                            <div className="recipe-front-text-creation">
-                                <h1> { recipeTitle } </h1>
-                            </div>
-                        </div>
-                        
-                        <div className="recipe-card-back-creation">
-                            <div className="recipe-back-title-creation" ><h1>{ recipeTitle }</h1></div>
-                            <div className="recipe-back-description-creation" ><p> { recipeDescription } </p></div>
-                            <div className="recipe-back-author-container-creation">
-                                <div className="recipe-back-author-creation" ><p> { isUserSignedIn() ? getUserName() : 'YOUR NAME HERE' } </p></div>
-                                <div className="recipe-back-author-pic-creation" > { isUserSignedIn() ? <img src={getProfilePicUrl()} alt=""/> : <i className="fa fa-user fa-3x"></i> } </div>
-                            </div>
-                        </div>
-                    
-                    </div>
-                </div>
-            </div> */}
-
-
-
-
         </div>
 
     )
 }
 
 export default AddNewRecipe;
+
+// <div className="draft-recipe-card-container">
+// <div className="recipe-card-creation">
+//     <div className={`recipe-card-inner-creation ${submitted ? 'spin' : ''}`}>
+        
+//         <div className="recipe-card-front-creation">
+//             <div className="image-container-creation" >
+//             <canvas
+//                 ref={previewCanvasRef}
+//                 style={{
+//                     minWidth: "246.4px",
+//                     width: "22vw",
+//                     minHeight: "246.4px",
+//                     height: "22vw",
+//                 }}
+//                 />
+//             </div>
+//             <div className="recipe-front-text-creation">
+//                 <h1> { recipeTitle } </h1>
+//             </div>
+//         </div>
+        
+//         <div className="recipe-card-back-creation">
+//             <div className="recipe-back-title-creation" ><h1>{ recipeTitle }</h1></div>
+//             <div className="recipe-back-description-creation" ><p> { recipeDescription } </p></div>
+//             <div className="recipe-back-author-container-creation">
+//                 <div className="recipe-back-author-creation" ><p> { isUserSignedIn() ? getUserName() : 'YOUR NAME HERE' } </p></div>
+//                 <div className="recipe-back-author-pic-creation" > { isUserSignedIn() ? <img src={getProfilePicUrl()} alt=""/> : <i className="fa fa-user fa-3x"></i> } </div>
+//             </div>
+//         </div>
+    
+//     </div>
+// </div>
+// </div>
