@@ -236,8 +236,8 @@ function getStepFourText () {
                                     <canvas
                                         ref={previewCanvasRef}
                                         style={{
-                                            width: "246.4px",
-                                            height: "246.4px",    
+                                            maxWidth: "246.4px",
+                                            maxHeight: "246.4px",    
                                         }}
                                     />
                                 </div>

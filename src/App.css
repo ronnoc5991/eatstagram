@@ -457,7 +457,7 @@
   font-family: 'Walter Turncoat', cursive;
   font-weight: bold;
   animation-name: fluctuate;
-  animation-duration: 25s00ms;
+  animation-duration: 2500ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
@@ -817,8 +817,5 @@
     font-size: 18px;
   }
 
-  /* .recipe-card-creation {
-    width: 250px;
-    height: calc(250px * 1.22);
-  } */
+  
 }
