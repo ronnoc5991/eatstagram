@@ -483,6 +483,18 @@
   width: 95%;
   margin-top: 10px;
   font-size: 14px;
+  animation-name: fluctuate2;
+  animation-duration: 2500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes fluctuate2 {
+  0%  { border: 3px solid #FF0000; }
+  25% { border: 3px solid #FFFF00; }
+  50% { border: 3px solid #00FF00; }
+  75% { border: 3px solid #0000FF; }
+  100%{ border: 3px solid #FF0000; }
 }
 
 .form-button-container {
@@ -517,8 +529,8 @@
   background-color: rgb(0, 163, 35);
   border: 2px solid black;
   box-shadow: 0px 0px 2px 2px grey;
-  width: 50px;
-  height: 50px;
+  width: 10vh;
+  height: 10vh;
   border-radius: 50%;
   z-index: 3;
   position: absolute;
@@ -535,22 +547,22 @@
   background-color: rgb(0, 163, 35);
   border: 2px solid black;
   box-shadow: 0px 0px 2px 2px white;
-  height: 40px;
-  width: 40px;
+  height: 8vh;
+  width: 8vh;
   border-radius: 50%;
   margin: auto;
 }
 
 @keyframes pulse {
-  0% {height: 1000x; width: 100px;}
-  100% {transform: translate(-50%, -50%) scale(1.4) ; border: 1px solid transparent}
+  0% {height: 10vh; width: 10vh;}
+  100% {transform: translate(-50%, -50%); border: 1px solid transparent; height: 15vh; width: 15vh;}
 }
 
 .flashers {
-  height: 100px;
-  width: 100px;
+  height: 10vh;
+  width: 10vh;
   border-radius: 50%;
-  border: 1px solid green;
+  border: 3px solid green;
   background-color: transparent;
   position: absolute;
   top: 50%;
@@ -583,8 +595,8 @@
   background-color: rgb(129, 129, 129);
   border: 2px solid black;
   box-shadow: 0px 0px 2px 2px grey;
-  width: 50px;
-  height: 50px;
+  width: 10vh;
+  height: 10vh;
   border-radius: 50%;
   pointer-events: none;
   z-index: 3;
@@ -598,8 +610,8 @@
   background-color: rgb(129, 129, 129);
   border: 2px solid black;
   box-shadow: 0px 0px 2px 2px white;
-  height: 40px;
-  width: 40px;
+  height: 8vh;
+  width: 8vh;
   border-radius: 50%;
   margin: auto;
 }
@@ -608,9 +620,7 @@
   display: flex;
 }
 
-
 /* ------------------------------------------------------- Add Recipe Draft Card --------------------------------------------------------------------------------------- */
-
 
 .recipe-card-creation {
   background-color: transparent;
@@ -619,8 +629,6 @@
   perspective: 1000px;
 }
 
-
-/* This container is needed to position the front and back side */
 .recipe-card-inner-creation {
   position: relative;
   width: 100%;
@@ -695,11 +703,6 @@
   transform: rotateY(1080deg);
 }
 
-.spin:hover {
-  transform: rotateY(1260deg);
-}
-
-/* Position the front and back side */
 .recipe-card-front-creation, .recipe-card-back-creation {
   position: absolute;
   width: 100%;
@@ -708,7 +711,6 @@
   backface-visibility: hidden;
 }
 
-/* Style the front side (fallback if image is missing) */
 .recipe-card-front-creation {
   background-color: #ffffff;
   background-image: url("https://www.transparenttextures.com/patterns/cream-pixels.png");
@@ -818,5 +820,34 @@
     font-size: 18px;
   }
 
-  
+  .submit-button {
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, 0%);
+  }
+
+  .submit-button-inner {
+    height: 40px;
+    width: 40px;
+  }
+
+  @keyframes pulse {
+    0% {height: 50px; width: 50px;}
+    100% {transform: translate(-50%, -50%) scale(1.4); border: 1px solid transparent;}
+  }
+
+  .flashers {
+    height: 50px;
+    width: 50px;
+  }
+
+  .submit-button-fake {
+    width: 50px;
+    height: 50px;
+  }
+
+  .submit-button-fake div {
+    height: 40px;
+    width: 40px;
+  }
 }
