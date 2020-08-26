@@ -10,6 +10,7 @@ import "firebase/storage";
 import ReactCrop from 'react-image-crop'
 import "react-image-crop/dist/ReactCrop.css";
 import {base64StringtoFile, extractImageFileExtensionFromBase64} from './ReusableUtils'
+import camera from './camera.png'
 
 
 const AddNewRecipe = () => {
@@ -203,13 +204,10 @@ function preparePhotoForUpload () {
                         {(step === 4) && 'Upload a photo of your dish'} 
                     </h2>
 
-                    { (step === 3) &&
-                        <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
-                    }
 
                     <div className="draft-recipe-card-container">
-                        <div className="recipe-card-creation">
-                            <div className={`recipe-card-inner-creation ${submitted ? 'spin' : ''}`}>
+                        <div className={`recipe-card-creation ${(step===4) ? 'flippable' : ''}`}>
+                            <div className={`recipe-card-inner-creation  ${(step === 3) ? 'flip' : '' } ${submitted ? 'spin' : ''}`}>
                                     
                                 <div className="recipe-card-front-creation">
                                     <div className={`image-container-creation ${(step===1) ? 'cropping' : 'finished-cropping'}`} >
@@ -223,7 +221,10 @@ function preparePhotoForUpload () {
                                                     onComplete={c => setCompletedCrop(c)}
                                                 />
                                             </div> :
-                                            <input type="file" accept="image/*" onChange={onSelectFile} /> 
+                                            <label htmlFor="photo-upload">
+                                            <img src={ camera } alt=""/>
+                                            <input type="file" accept="image/*" id="photo-upload" onChange={onSelectFile} /> 
+                                            </label>
                                         }
 
                                         <canvas
@@ -235,16 +236,24 @@ function preparePhotoForUpload () {
                                         />
                                     </div>
                                     <div className="recipe-front-text-creation">
-                                        { (step === 2 ) ? <input type="text" name="title" maxLength="21" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
+                                        { (step === 2 ) ? 
+                                            <input type="text" name="title" maxLength="21" autoComplete="off" value={ recipeTitle } onChange={ changeRecipeTitle } />
                                             : <h1> { recipeTitle } </h1>
                                         }
-                                        {/* <h1> { recipeTitle } </h1> */}
                                     </div>
                                 </div>
                                 
                                 <div className="recipe-card-back-creation">
                                     <div className="recipe-back-title-creation" ><h1>{ recipeTitle }</h1></div>
-                                    <div className="recipe-back-description-creation" ><p> { recipeDescription } </p></div>
+
+                                    <div className="recipe-back-description-creation" >
+                                        { (step===3) ? 
+                                            <textarea name="description" id="description" cols="25" rows="10" autoComplete="off" value={ recipeDescription } onChange={ changeRecipeDescription } ></textarea>
+                                            :
+                                            <p> { recipeDescription } </p>
+                                        }
+                                    </div>
+
                                     <div className="recipe-back-author-container-creation">
                                         <div className="recipe-back-author-creation" ><p> { isUserSignedIn() ? getUserName() : 'YOUR NAME HERE' } </p></div>
                                         <div className="recipe-back-author-pic-creation" > { isUserSignedIn() ? <img src={getProfilePicUrl()} alt=""/> : <i className="fa fa-user fa-3x"></i> } </div>
@@ -255,8 +264,9 @@ function preparePhotoForUpload () {
                         </div>
                     </div>
 
-                    <div className="step-counter"> {`${ step } / 4`} </div> 
 
+
+                    <div className="step-counter"> {`${ step } / 4`} </div> 
 
                 </div>
 
@@ -265,8 +275,7 @@ function preparePhotoForUpload () {
 
                 
 
-                { step === 4 && (
-                    <div className="step step-4">
+                {/* { step === 4 && (
                         
                         { submitted ? <h2>You have published your recipe!</h2> : (isUserSignedIn() ? <h2>Publish your recipe!</h2> : <h2>Please sign-in to share your recipe.</h2>)}  
                                 
@@ -276,8 +285,7 @@ function preparePhotoForUpload () {
                         :   <button className="submit-button-fake" > <div></div></button>  
                         } 
             
-                    </div>           
-                )} 
+                )}  */}
 
                 <div className="form-button-container">
                     { previousStepPossible() ? <div className="previous-step-button"><i className="fa fa-arrow-left fa-2x" onClick={ previousStep }></i></div> : ''}

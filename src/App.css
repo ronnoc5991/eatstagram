@@ -427,6 +427,7 @@
   margin-top: 8vh;
   height: 92vh;
   width: 100vw;
+  background-image: url(./blueprint.jpg);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -437,7 +438,7 @@
 .recipe-creation-header h2 {
   margin: 0;
   font-size: 24px;
-  color: black;
+  color: white;
   font-style: italic;
 }
 
@@ -454,7 +455,7 @@
   margin-bottom: 8vh;
   position: relative;
   overflow: hidden;
-  color: black;
+  color: white;
 }
 
 .step {
@@ -670,9 +671,9 @@
   margin: auto;
 }
 
-/* .recipe-card-creation:hover .recipe-card-inner-creation {
+.flippable:hover .recipe-card-inner-creation {
   transform: rotateY(180deg);
-} */
+}
 
 .cropping canvas {
   display: none;
@@ -682,6 +683,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.cropping label img {
+  width: 50%;
+  animation-name: dance;
+  animation-duration: 2000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.cropping label img:hover {
+  cursor: pointer;
+}
+
+@keyframes dance {
+  0% { transform: rotate(0deg); }
+  15% { transform: translate(-5%, 10%) rotate(15deg); }
+  25% { transform: translate(-5%, 0%) rotate(15deg); }
+  35% { transform: translate(-5%, 10%) rotate(15deg); }
+  50% { transform: rotate(0deg); }
+  65% { transform: translate(5%, 10%) rotate(-15deg); }
+  75% { transform: translate(5%, 0%) rotate(-15deg); }
+  85% { transform: translate(5%, 10%) rotate(-15deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .finished-cropping .crop-container {
@@ -743,6 +768,10 @@
 
 .recipe-front-text-creation input {
 
+}
+
+#photo-upload {
+  display: none;
 }
 
 .recipe-card-back-creation {
