@@ -279,14 +279,9 @@
 
 .recipe-card {
   background-color: transparent;
-  /* min-width: 200px;
-  width: 16vw;
-  min-height: calc(200px * 1.22);
-  height: calc(16vw * 1.22); */
   width: 300px;
   height: calc(300px * 1.22);
   perspective: 1000px;
-  /* margin: 1vw; */
 }
 
 
@@ -320,7 +315,6 @@
   background-image: url("https://www.transparenttextures.com/patterns/cream-pixels.png");
   color: black;
   display: grid;
-  /* grid-template-rows: 277px 59px; */
   grid-template-rows: 4.7fr 1fr;
   text-align: center;
   border-radius: 2px;
@@ -431,48 +425,36 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 
 .recipe-creation-header h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 27px;
   color: white;
   font-style: italic;
 }
 
 .recipe-form {
-  min-height: 400px;
+  min-height: 450px;
   height: 75%;
   width: 300px;
   box-sizing: border-box;
-  /* background-color: rgba(255, 255, 255, .9); */
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  /* box-shadow: 0px 0px 6px 6px #6b6b6b; */
-  /* border-radius: 20px; */
-  border: 1px solid black;
-  margin-bottom: 8vh;
+  font-family: 'Walter Turncoat', cursive;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   color: white;
-}
-
-.step {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Walter Turncoat', cursive;
+  justify-content: start;
+  font-size: 14px;
+  font-style: italic;
 }
 
-.step h2 {
-  font-size: 18px;
-  font-style: italic;
+.recipe-form h2 {
+  margin: 0 auto 10px auto;
 }
 
 .step-counter {
@@ -483,20 +465,13 @@
   font-weight: bold;
 }
 
-.step-1 input {
-  all: unset;
-  width: 210px;
-  margin: auto;
-}
-
-.step-2 input {
+.recipe-front-text-creation input {
   all: unset;
   box-sizing: border-box;
-  /* padding-top: 100px; */
   border-bottom: 2px solid rgba(0, 0, 0, 0.623);
   width: 90%;
   border: 1px solid black;
-  height: 40px;
+  height: 50px;
   font-size: 20px;
   font-family: 'Walter Turncoat', cursive;
   font-weight: bold;
@@ -506,14 +481,16 @@
   border-bottom: 2px solid green;
 }
 
-.step-3 textarea {
+.recipe-back-description-creation textarea {
   all: unset;
   border: 1px solid grey;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: white;
-  height: 60%;
-  width: 80%;
-  margin-top: 5vh;
+  height: 90%;
+  width: 95%;
+  margin-top: 10px;
+  font-size: 14px;
+
 }
 
 .form-button-container {
@@ -530,8 +507,7 @@
 
 .form-button-container i:hover {
   cursor: pointer;
-  color: rgb(0, 138, 18);
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .previous-step-button {
@@ -544,22 +520,19 @@
   display: flex;
 }
 
-
-
 .submit-button {
   all: unset;
-  align-self: center;
-  margin: auto;
-  color: white;
-  font-style: italic;
   background-color: rgb(0, 163, 35);
   border: 2px solid black;
   box-shadow: 0px 0px 2px 2px grey;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  margin-top: 5vh;
-  position: relative;
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 .submit-button:hover {
@@ -570,8 +543,8 @@
   background-color: rgb(0, 163, 35);
   border: 2px solid black;
   box-shadow: 0px 0px 2px 2px white;
-  height: 80px;
-  width: 80px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   margin: auto;
 }
@@ -615,33 +588,32 @@
 
 .submit-button-fake {
   all: unset;
-  align-self: center;
-  margin: auto;
-  color: white;
-  font-style: italic;
   background-color: rgb(129, 129, 129);
   border: 2px solid black;
   box-shadow: 0px 0px 2px 2px grey;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  margin-top: 5vh;
   pointer-events: none;
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 .submit-button-fake div {
   background-color: rgb(129, 129, 129);
   border: 2px solid black;
   box-shadow: 0px 0px 2px 2px white;
-  height: 80px;
-  width: 80px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   margin: auto;
 }
 
 .draft-recipe-card-container {
   display: flex;
-  margin: auto;
 }
 
 
@@ -688,7 +660,7 @@
 .cropping label img {
   width: 50%;
   animation-name: dance;
-  animation-duration: 2000ms;
+  animation-duration: 2500ms;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
@@ -698,15 +670,23 @@
 }
 
 @keyframes dance {
-  0% { transform: rotate(0deg); }
-  15% { transform: translate(-5%, 10%) rotate(15deg); }
-  25% { transform: translate(-5%, 0%) rotate(15deg); }
+  0%  { transform: rotate(0deg); 
+        filter: invert(20%) sepia(81%) saturate(7341%) hue-rotate(357deg) brightness(109%) contrast(120%);
+      }
+  15% { transform: translate(-5%, 10%) rotate(15deg);}
+  25% { transform: translate(-5%, 0%) rotate(15deg);}
   35% { transform: translate(-5%, 10%) rotate(15deg); }
-  50% { transform: rotate(0deg); }
+  50% { transform: rotate(0deg); 
+        filter: invert(91%) sepia(24%) saturate(4479%) hue-rotate(3deg) brightness(109%) contrast(104%);
+      }
   65% { transform: translate(5%, 10%) rotate(-15deg); }
-  75% { transform: translate(5%, 0%) rotate(-15deg); }
+  75% { transform: translate(5%, 0%) rotate(-15deg); 
+        filter: invert(8%) sepia(100%) saturate(6851%) hue-rotate(248deg) brightness(102%) contrast(145%);
+      }
   85% { transform: translate(5%, 10%) rotate(-15deg); }
-  100% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); 
+        filter: invert(20%) sepia(81%) saturate(7341%) hue-rotate(357deg) brightness(109%) contrast(120%);
+      }
 }
 
 .finished-cropping .crop-container {
@@ -766,10 +746,6 @@
   margin-bottom: 1.5vh;
 }
 
-.recipe-front-text-creation input {
-
-}
-
 #photo-upload {
   display: none;
 }
@@ -796,7 +772,7 @@
 .recipe-back-description-creation {
   grid-row-start: 3;
   grid-row-end: 4;
-  font-size: 10px;
+  font-size: 14px;
   width: 90%;
   margin: 0px auto;
   text-align: center;
