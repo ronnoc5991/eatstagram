@@ -728,7 +728,8 @@
 }
 
 .image-container-creation img {
-  width: 100%;
+  max-width: 246.6px;
+  max-height: 246.6px;
   /* transform: translate3d(0,0,0); */
   -webkit-backface-visibility: hidden; /*Safari */
   backface-visibility: hidden;
