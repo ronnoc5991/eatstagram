@@ -109,9 +109,9 @@ function App() {
             <img src={ fridge } alt=""/>
           </div>
 
-          <i className="fa fa-camera" title="Add Your Recipe" onClick={() => setCurrentDisplay('new-recipe') }></i>
-
           <i className="fa fa-home fa-lg" title='Home' onClick={() => setCurrentDisplay('home') }></i>
+
+          <i className="fa fa-camera" title="Add Your Recipe" onClick={() => setCurrentDisplay('new-recipe') }></i>
 
           { isLoggedIn ? 
             <div className="signed-in" title={ getUserName() } onClick={ signOut }>
