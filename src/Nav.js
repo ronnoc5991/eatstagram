@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import tomato from './tomato.png'
 import * as firebase from "firebase/app";
 import "firebase/analytics";
@@ -6,10 +6,11 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
 import { Link } from 'react-router-dom';
+import { UserContext } from './UserContext'; 
 
 function Nav() {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useContext(UserContext);
 
     function signIn () {
         console.log(firebase);

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect, useContext } from 'react';
 import * as firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/auth";
@@ -8,7 +8,7 @@ import ReactCrop from 'react-image-crop'
 import "react-image-crop/dist/ReactCrop.css";
 import {base64StringtoFile, extractImageFileExtensionFromBase64} from './ReusableUtils'
 import camera from './camera.png'
-
+import { UserContext } from './UserContext'; 
 
 const Create = () => {
 
@@ -16,6 +16,7 @@ const Create = () => {
     const [recipeDescription, setRecipeDescription] = useState('');
     const [step, setStep] = useState(1);
     const [submitted, setSubmitted] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useContext(UserContext);
 
     const pixelRatio = 4;
 
@@ -263,7 +264,7 @@ function getStepFourText () {
                 </div>
 
 
-                { (step === 4) ? (isUserSignedIn() ?
+                { (step === 4) ? (isLoggedIn ?
                             <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers flasher-1"></div><div className="flashers flasher-2"></div><div className="flashers flasher-3"></div> </> }</div></button> 
                         :   <button className="submit-button-fake" > <div></div></button>) 
                         : ''
