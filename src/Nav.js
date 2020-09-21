@@ -47,7 +47,7 @@ function Nav() {
     return (
         <div className="Nav">
             <header>
-                <Link to="/">
+                <Link to="/eatstagram/">
                     <div id="logo">
                         <img src={ tomato } alt="" className="logo-image"/>
                         <span>Eatstagram</span>
@@ -56,14 +56,14 @@ function Nav() {
                 
                 <ul>
 
-                    <Link to="/">
+                    <Link to="/eatstagram/">
                         <li>
                             <h3>Explore</h3>
                             <div className="underline"></div>
                         </li>
                     </Link>
 
-                    <Link to="/create">
+                    <Link to="/eatstagram/create">
                         <li>
                             <h3>Create</h3>
                             <div className="underline"></div>
