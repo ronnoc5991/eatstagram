@@ -1,9 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-// Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
-// If you enabled Analytics in your project, add the Firebase SDK for Analytics
 import "firebase/analytics";
-// Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
@@ -13,7 +10,7 @@ import {base64StringtoFile, extractImageFileExtensionFromBase64} from './Reusabl
 import camera from './camera.png'
 
 
-const AddNewRecipe = () => {
+const Create = () => {
 
     const [recipeTitle, setRecipeTitle] = useState('');    
     const [recipeDescription, setRecipeDescription] = useState('');
@@ -21,9 +18,6 @@ const AddNewRecipe = () => {
     const [submitted, setSubmitted] = useState(false);
 
     const pixelRatio = 4;
-
-
-
 
     function createRecipe (e) {
         e.preventDefault();
@@ -196,9 +190,7 @@ function getStepFourText () {
 
 
     return (
-        <div className="new-recipe-view">
-
-            <div className="recipe-creation-header"> <h2>Recipe Creation Station</h2></div>
+        <div className="Create">
             
             <form className="recipe-form" >
 
@@ -294,50 +286,4 @@ function getStepFourText () {
     )
 }
 
-export default AddNewRecipe;
-
-// <div className="draft-recipe-card-container">
-// <div className="recipe-card-creation">
-//     <div className={`recipe-card-inner-creation ${submitted ? 'spin' : ''}`}>
-        
-//         <div className="recipe-card-front-creation">
-//             <div className="image-container-creation" >
-//             <canvas
-//                 ref={previewCanvasRef}
-//                 style={{
-//                     minWidth: "246.4px",
-//                     width: "22vw",
-//                     minHeight: "246.4px",
-//                     height: "22vw",
-//                 }}
-//                 />
-//             </div>
-//             <div className="recipe-front-text-creation">
-//                 <h1> { recipeTitle } </h1>
-//             </div>
-//         </div>
-        
-//         <div className="recipe-card-back-creation">
-//             <div className="recipe-back-title-creation" ><h1>{ recipeTitle }</h1></div>
-//             <div className="recipe-back-description-creation" ><p> { recipeDescription } </p></div>
-//             <div className="recipe-back-author-container-creation">
-//                 <div className="recipe-back-author-creation" ><p> { isUserSignedIn() ? getUserName() : 'YOUR NAME HERE' } </p></div>
-//                 <div className="recipe-back-author-pic-creation" > { isUserSignedIn() ? <img src={getProfilePicUrl()} alt=""/> : <i className="fa fa-user fa-3x"></i> } </div>
-//             </div>
-//         </div>
-    
-//     </div>
-// </div>
-// </div>
-
-// /* { step === 4 && (
-                        
-                //         { submitted ? <h2>You have published your recipe!</h2> : (isUserSignedIn() ? <h2>Publish your recipe!</h2> : <h2>Please sign-in to share your recipe.</h2>)}  
-                                
-                                
-                //         { isUserSignedIn() ?
-                //             <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers flasher-1"></div><div className="flashers flasher-2"></div><div className="flashers flasher-3"></div> </> }</div></button> 
-                //         :   <button className="submit-button-fake" > <div></div></button>  
-                //         } 
-            
-                // )}  */
+export default Create;

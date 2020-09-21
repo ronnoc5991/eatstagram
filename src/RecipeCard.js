@@ -6,8 +6,6 @@ const RecipeCard = (props) => {
         <div className="recipe-card">
             <div className="recipe-card-inner">
                 <div className="recipe-card-front">
-                    {/* <img src={ props.recipe.imageUrl } alt=""/> */}
-                    {/* <div className="image" style={ {backgroundImage: `url(${props.recipe.imageUrl})`} } ></div> */}
                     <div className="image-container" >
                         <img src={ props.recipe.imageUrl } alt=""/>
                     </div>

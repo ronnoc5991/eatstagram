@@ -7,8 +7,6 @@
 .App {
   text-align: center;
   background-color: rgb(255, 255, 255);
-  background-image: url(./background1.jpg);
-  background-size: 350px;
   width: 100%;
   overflow-x: hidden;
   display: flex;
@@ -17,9 +15,7 @@
   position: relative;
 }
 
-/* USED TO SOFTEN THE BACKGROUND COLOR */
-
-.filter {
+.filter { /* USED TO SOFTEN THE BACKGROUND COLOR */
   top: 0;
   bottom: 0;
   left: 0;
@@ -40,7 +36,7 @@
 
 /* ------------------------------------------ Header ------------------------------------------ */
 
-.header {
+header {
   background-color: rgb(251,251,251);
   height: 8vh;
   box-shadow: 0px 0px 5px 5px #6b6b6b;
@@ -48,36 +44,69 @@
   overflow: hidden;
   position: fixed;
   align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
   width: 100vw;
+  padding: 0 40px; /* media query later */
   z-index: 6;
 }
 
-.icon-container {
-  height: 100%;
+header ul {
+  all: unset;
+  width: 400px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 150px;
-  margin-right: 2vw;
+  height: 100%;
+}
+
+header a,
+header a:visited,
+header a:focus,
+header a:active {
+  all:unset;
+  color: black;
+  cursor: pointer;
+  height: 100%;
+}
+
+header ul li {
+  all: unset;
+  cursor: pointer;
+  font-family: 'Baloo Tammudu 2', cursive;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: relative;
+  transition: color 300ms ease-in-out;
 }
 
-.icon-container:hover .sliding-rect {
-  transform: translateX(-150px);
+header ul li h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
 }
 
-.icon-container:hover .sliding-rect img {
-  transform: rotate(-15deg);
+li .underline {
+  width: 0%;
+  height: 4px;
+  border-radius: 5px;
+  margin: auto auto 0 auto;
+  transition: all 300ms ease-in-out;
 }
 
-.header i:hover {
-  cursor: pointer;
+li:hover .underline {
+  background-color: var(--tomato-red);
+  width: 100%;
+}
+
+header li:hover {
   color: var(--tomato-red);
 }
  
 #logo {
-  margin-left: 2vw;
-  margin-right: auto;
   z-index: 1;
   display: flex;
   align-items: center;
@@ -91,38 +120,8 @@
 
 #logo span {
   margin-left: 10px;
-  font-size: 20px;
   font-size: 2.8vh;
   font-style: italic;
-}
-
-#logo:hover {
-  cursor: pointer;
-}
-
-.log-in-out {
-  display: flex;
-  margin-right: 4vw;
-}
-
-.fa-lg {
-  vertical-align: -5%;
-}
-
-.sliding-rect {
-  position: absolute;
-  background-color: rgb(251,251,251);
-  right: 0;
-  left: 0;
-  height: 8vh;
-  transition: all 250ms linear;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.sliding-rect img {
-  height: 100%;
 }
 
 .signed-in {
@@ -141,25 +140,32 @@
 /* ------------------------------------------ Home Display ------------------------------------------ */
 
 
-.home-view {
-  width: 90vw;
-  min-height: 70vh;
-  margin: 12vh auto auto auto;
+.Home {
+  background-image: url(./background1.jpg);
+  background-size: 350px;
+  width: 100vw;
+  min-height: 100vh;
+  padding-top: 12vh;
+  margin: auto;
+  overflow: hidden;
+}
+
+.grid-display {
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
   grid-gap: 25px;
   justify-content: center;
 }
 
+/* ------------------------------------------ Load More Recipes Button ------------------------------------------ */
+
 .more-recipes-container {
+  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
-  margin: auto;
-  margin-top: 5vw;
-  margin-bottom: 3vw;
-  flex-wrap: wrap;
+  margin: 5vw auto 3vw auto;
+  /* flex-wrap: wrap; */
   cursor: pointer;
-  flex-basis: 100%;
 }
 
 .more-recipes-content {
@@ -283,9 +289,13 @@
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.8s;
+  transition: transform 600ms ease-in-out;
   transform-style: preserve-3d;
   box-shadow: 0px 0px 10px 5px #6b6b6b;
+}
+
+.flip .recipe-card-inner{ /* can apply flip class to recipe card on Click.. useState to achieve this? */
+  transform: rotateY(180deg);
 }
 
 .recipe-card:hover .recipe-card-inner {
@@ -396,9 +406,9 @@
 }
 
 
-/* ------------------------------------------ Add Recipe Display ------------------------------------------ */
+/* ------------------------------------------ Recipe Creation ------------------------------------------ */
 
-.new-recipe-view {
+.Create {
   margin-top: 8vh;
   height: 92vh;
   width: 100vw;
@@ -406,15 +416,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-}
-
-.recipe-creation-header h2 {
-  margin: 0;
-  font-size: 27px;
-  color: white;
-  font-style: italic;
 }
 
 .recipe-form {
@@ -422,20 +425,19 @@
   height: 75%;
   width: 300px;
   box-sizing: border-box;
-  font-family: 'Walter Turncoat', cursive;
   position: relative;
   /* overflow: hidden; */
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   font-size: 14px;
   font-style: italic;
 }
 
 .recipe-form h2 {
-  margin: 0 auto 10px auto;
+  margin: 0 auto 2vh auto;
 }
 
 .step-counter {
