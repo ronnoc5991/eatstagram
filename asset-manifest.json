@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/eatstagram-react/static/css/main.a6afb733.chunk.css",
-    "main.js": "/eatstagram-react/static/js/main.ac20b3c0.chunk.js",
-    "main.js.map": "/eatstagram-react/static/js/main.ac20b3c0.chunk.js.map",
-    "runtime-main.js": "/eatstagram-react/static/js/runtime-main.ffce09e5.js",
-    "runtime-main.js.map": "/eatstagram-react/static/js/runtime-main.ffce09e5.js.map",
-    "static/css/2.82d3b9cd.chunk.css": "/eatstagram-react/static/css/2.82d3b9cd.chunk.css",
-    "static/js/2.30f26992.chunk.js": "/eatstagram-react/static/js/2.30f26992.chunk.js",
-    "static/js/2.30f26992.chunk.js.map": "/eatstagram-react/static/js/2.30f26992.chunk.js.map",
-    "index.html": "/eatstagram-react/index.html",
-    "precache-manifest.b494f551c0dd292f70046234535d6543.js": "/eatstagram-react/precache-manifest.b494f551c0dd292f70046234535d6543.js",
-    "service-worker.js": "/eatstagram-react/service-worker.js",
-    "static/css/2.82d3b9cd.chunk.css.map": "/eatstagram-react/static/css/2.82d3b9cd.chunk.css.map",
-    "static/css/main.a6afb733.chunk.css.map": "/eatstagram-react/static/css/main.a6afb733.chunk.css.map",
-    "static/js/2.30f26992.chunk.js.LICENSE.txt": "/eatstagram-react/static/js/2.30f26992.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/eatstagram-react/static/media/blueprint.0ec5fe4f.jpg",
-    "static/media/font-awesome.min.css": "/eatstagram-react/static/media/fontawesome-webfont.fee66e71.woff",
-    "static/media/tomato.png": "/eatstagram-react/static/media/tomato.a57a9c80.png"
+    "main.css": "/eatstagram/static/css/main.a2636818.chunk.css",
+    "main.js": "/eatstagram/static/js/main.2a12b7a0.chunk.js",
+    "main.js.map": "/eatstagram/static/js/main.2a12b7a0.chunk.js.map",
+    "runtime-main.js": "/eatstagram/static/js/runtime-main.2a5b6642.js",
+    "runtime-main.js.map": "/eatstagram/static/js/runtime-main.2a5b6642.js.map",
+    "static/css/2.ae08cffe.chunk.css": "/eatstagram/static/css/2.ae08cffe.chunk.css",
+    "static/js/2.30f26992.chunk.js": "/eatstagram/static/js/2.30f26992.chunk.js",
+    "static/js/2.30f26992.chunk.js.map": "/eatstagram/static/js/2.30f26992.chunk.js.map",
+    "index.html": "/eatstagram/index.html",
+    "precache-manifest.aea4bf8d8c67c2f24d5c45134bd2559a.js": "/eatstagram/precache-manifest.aea4bf8d8c67c2f24d5c45134bd2559a.js",
+    "service-worker.js": "/eatstagram/service-worker.js",
+    "static/css/2.ae08cffe.chunk.css.map": "/eatstagram/static/css/2.ae08cffe.chunk.css.map",
+    "static/css/main.a2636818.chunk.css.map": "/eatstagram/static/css/main.a2636818.chunk.css.map",
+    "static/js/2.30f26992.chunk.js.LICENSE.txt": "/eatstagram/static/js/2.30f26992.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/eatstagram/static/media/blueprint.0ec5fe4f.jpg",
+    "static/media/font-awesome.min.css": "/eatstagram/static/media/fontawesome-webfont.fee66e71.woff",
+    "static/media/tomato.png": "/eatstagram/static/media/tomato.a57a9c80.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.ffce09e5.js",
-    "static/css/2.82d3b9cd.chunk.css",
+    "static/js/runtime-main.2a5b6642.js",
+    "static/css/2.ae08cffe.chunk.css",
     "static/js/2.30f26992.chunk.js",
-    "static/css/main.a6afb733.chunk.css",
-    "static/js/main.ac20b3c0.chunk.js"
+    "static/css/main.a2636818.chunk.css",
+    "static/js/main.2a12b7a0.chunk.js"
   ]
 }
