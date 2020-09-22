@@ -32,7 +32,7 @@
   width: 100%;
   height: 100%;
   z-index: 11;
-  background-image: url(./food.jpg);
+  background-image: url(./food-3.jpg);
   background-position: center;
   background-size: cover;
   opacity: 0;
@@ -42,6 +42,8 @@
 }
 
 .intro-title {
+  font-family: 'Pacifico', cursive;
+  font-family: 'Julius Sans One', sans-serif;
   color: white;
   text-shadow: 0 0 3px black;
   font-size: 8vmin;
@@ -144,7 +146,8 @@ header a:active {
 #logo span {
   margin-left: 10px;
   font-size: 2.8vh;
-  font-style: italic;
+  font-family: 'Julius Sans One', sans-serif;
+  color: var(--tomato-red);
 }
 
 .signed-in {
@@ -165,6 +168,7 @@ header a:active {
 
 .Home {
   background-image: url(./stone.jpg);
+  background-image: url(./marble2.jpg);
   background-size: 350px;
   width: 100vw;
   min-height: 100vh;
@@ -303,7 +307,7 @@ header a:active {
   width: 300px;
   height: calc(300px * 1.22);
   perspective: 1000px;
-  opacity: 1;
+  opacity: 0;
 }
 
 .recipe-card-inner {
@@ -313,6 +317,7 @@ header a:active {
   transition: transform 600ms ease-in-out;
   transform-style: preserve-3d;
   box-shadow: 0px 0px 10px 5px #6b6b6b;
+  box-shadow: 0 0 5px 1px black;
 }
 
 .flip .recipe-card-inner{ /* can apply flip class to recipe card on Click.. useState to achieve this? */
@@ -646,6 +651,7 @@ header a:active {
 /* ------------------------------------------------------- Add Recipe Draft Card --------------------------------------------------------------------------------------- */
 
 .recipe-card-creation {
+  opacity: 0;
   background-color: transparent;
   width: 280px;
   height: calc(280px * 1.22);

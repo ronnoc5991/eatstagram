@@ -55,7 +55,7 @@ function Nav() {
             <header>
                 <Link to="/eatstagram/">
                     <div id="logo">
-                        <img src={ tomato } alt="" className="logo-image"/>
+                        {/* <img src={ tomato } alt="" className="logo-image"/> */}
                         <span>Eatstagram</span>
                     </div>
                 </Link>
@@ -113,7 +113,7 @@ function Nav() {
                         <img src={`${ getProfilePicUrl }`} alt="Nothing" className="user-pic" title={ getUserName } onClick={ signOut }/>
                         :
                         <>
-                        <h3 title='Sign-In' onClick={ signIn }>Sign-In</h3>
+                        <h3 onClick={ signIn }>Sign-In</h3>
                         </>
                         }
                     </li>

@@ -5,18 +5,8 @@ import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-import tomato from './tomato.png'
-import knife from './knife.png'
-import gsap from 'gsap'
 
 const Home = () => {
-
-    // const tl = gsap.timeline();
-    // tl.fromTo('.screen', {opacity: 0}, {opacity: 1, duration: 1.2});
-    // tl.fromTo('.intro', {y: 0}, {y: "-100%", duration: .5});
-    // tl.fromTo('.screen', {opacity: 1}, {opacity: 0, duration: 1});
-    // tl.fromTo('.screen', {y: 0}, {y: '-100%', duration: .1});
-    // tl.fromTo('.recipe-card', {opacity: 0}, {opacity: 1, duration: 1})
 
     const [recipes, setRecipes] = useState([]);
 
@@ -41,7 +31,7 @@ const Home = () => {
         <div className="Home">
 
             { recipes.map((recipe, i) => {
-                return <RecipeCard recipe={ recipe } key={ recipe.storageUri }  />
+                return <RecipeCard recipe={ recipe } key={ recipe.storageUri } />
             }) }
 
             {/* <div className="more-recipes-container"  >

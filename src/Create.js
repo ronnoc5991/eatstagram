@@ -9,8 +9,16 @@ import "react-image-crop/dist/ReactCrop.css";
 import {base64StringtoFile, extractImageFileExtensionFromBase64} from './ReusableUtils'
 import camera from './camera.png'
 import { UserContext } from './UserContext'; 
+import gsap from 'gsap';
 
 const Create = () => {
+
+    var card = useRef(null);
+
+    useEffect(() => {
+        const tl = gsap.timeline();
+        tl.fromTo(card, {opacity: 0}, {opacity: 1, duration: 1})
+    }, [])
 
     const [recipeTitle, setRecipeTitle] = useState('');    
     const [recipeDescription, setRecipeDescription] = useState('');
@@ -67,7 +75,6 @@ const Create = () => {
     }
 
     function isUserSignedIn() {
-        //this returns true is a user is signed in.... maybe that state takes care of this job?
         return !!firebase.auth().currentUser;
       }
 
@@ -98,14 +105,6 @@ const Create = () => {
             return true;
         } else {
             return false;
-        }
-    }
-
-    function needToSignIn () {
-        if ( step === 4 && !isUserSignedIn()) {
-            return true
-        }  else {
-            return false
         }
     }
 
@@ -205,7 +204,7 @@ function getStepFourText () {
 
 
                 <div className="draft-recipe-card-container">
-                    <div className={`recipe-card-creation ${(step===4) ? 'flippable' : ''}`}>
+                    <div className={`recipe-card-creation ${(step===4) ? 'flippable' : ''}`} ref={ (el) => { card = el } }>
                         <div className={`recipe-card-inner-creation  ${(step === 3) ? 'flip' : '' } ${submitted ? 'spin' : ''}`}>
                                 
                             <div className="recipe-card-front-creation">

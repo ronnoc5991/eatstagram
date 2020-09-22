@@ -9,14 +9,15 @@ import gsap from 'gsap';
 
 function App() {
 
-  var introImage = useRef(null);
   var introBackground = useRef(null);
+  var introImage = useRef(null);
+  var introTitle = useRef(null);
 
   useEffect(() => {
-    console.log(introImage);
     const tl = gsap.timeline();
-    tl.fromTo(introImage, {opacity: 0}, {opacity: 1, duration: 1.2});
-    tl.fromTo(introBackground, {y: 0}, {y: "-100%", duration: .5});
+    tl.fromTo(introImage, {opacity: 0}, {opacity: 1, duration: 1});
+    tl.fromTo(introTitle, {opacity: 0}, {opacity: 1, duration: 1});
+    tl.fromTo(introBackground, {y: 0}, {y: "-100%", duration: 1});
     tl.fromTo(introImage, {opacity: 1}, {opacity: 0, duration: 1});
     tl.fromTo(introImage, {y: 0}, {y: '-100%', duration: .1});
   }, [])
@@ -26,13 +27,9 @@ function App() {
       <Router>
         <div className="App">
 
-           <div className="intro"
-                ref={ (el) => { introBackground = el } }
-           ></div>
-            <div className="screen"
-                ref={ (el) => { introImage = el } }
-            >
-              <div className="intro-title">
+           <div className="intro" ref={ (el) => { introBackground = el } }></div>
+            <div className="screen" ref={ (el) => { introImage = el } }>
+              <div className="intro-title" ref={ (el) => { introTitle = el } }>
                 <h1>Eatstagram</h1>
               </div>
             </div>

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
 
 const RecipeCard = (props) => {
 
+    var recipeCard = useRef(null);
+
+    useEffect(() => {
+        const tl = gsap.timeline();
+        tl.fromTo(recipeCard, {opacity: 0, y: 50}, {opacity: 1, y: 0, duration: 1})
+    }, [])
+
     return (
-        <div className="recipe-card" >
+        <div className="recipe-card" ref={ (el) => { recipeCard = el } }>
             <div className="recipe-card-inner">
                 <div className="recipe-card-front">
                     <div className="image-container" >
