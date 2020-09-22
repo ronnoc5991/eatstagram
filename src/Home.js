@@ -11,11 +11,11 @@ import gsap from 'gsap'
 
 const Home = () => {
 
-    const tl = gsap.timeline();
-    tl.fromTo('.screen', {opacity: 0}, {opacity: 1, duration: 1.2});
-    tl.fromTo('.intro', {y: 0}, {y: "-100%", duration: .5});
-    tl.fromTo('.screen', {opacity: 1}, {opacity: 0, duration: 1});
-    tl.fromTo('.screen', {y: 0}, {y: '-100%', duration: .1});
+    // const tl = gsap.timeline();
+    // tl.fromTo('.screen', {opacity: 0}, {opacity: 1, duration: 1.2});
+    // tl.fromTo('.intro', {y: 0}, {y: "-100%", duration: .5});
+    // tl.fromTo('.screen', {opacity: 1}, {opacity: 0, duration: 1});
+    // tl.fromTo('.screen', {y: 0}, {y: '-100%', duration: .1});
     // tl.fromTo('.recipe-card', {opacity: 0}, {opacity: 1, duration: 1})
 
     const [recipes, setRecipes] = useState([]);
