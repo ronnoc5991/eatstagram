@@ -5,6 +5,7 @@ import Nav from './Nav';
 import Home from './Home';
 import Create from './Create';
 import { UserProvider } from './UserContext';
+import Intro from './Intro';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <div className="App">
           <Nav/>
+          <Intro/>
           <Switch>
             <Route path="/eatstagram/" exact component={ Home } />
             <Route path="/eatstagram/create" exact component={ Create } />

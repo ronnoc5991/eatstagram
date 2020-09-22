@@ -11,6 +11,8 @@ import { UserContext } from './UserContext';
 function Nav() {
 
     const [isLoggedIn, setIsLoggedIn] = useContext(UserContext);
+    const [menuOpen, setMenuOpen] = useState(false);
+
 
     function signIn () {
         console.log(firebase);
@@ -44,6 +46,10 @@ function Nav() {
     return firebase.auth().currentUser.displayName;
     }
 
+    function toggleMenu () {
+        setMenuOpen(!menuOpen);
+    }
+
     return (
         <div className="Nav">
             <header>
@@ -54,7 +60,7 @@ function Nav() {
                     </div>
                 </Link>
                 
-                <ul>
+                <ul className="big-nav">
 
                     <Link to="/eatstagram/">
                         <li>
@@ -80,7 +86,37 @@ function Nav() {
                         </>
                         }
                     </li>
+                </ul>
 
+                <div className="bar-container" onClick={ toggleMenu } >
+                    <div className={`bar ${ menuOpen ? 'open-1' : 'bar-1' }`}></div>
+                    <div className={`bar ${ menuOpen ? 'open-2' : 'bar-2' }`}></div>
+                    <div className={`bar ${ menuOpen ? 'open-3' : 'bar-3' }`}></div>
+                </div>
+
+                <ul className={`little-nav ${ menuOpen ? 'open-nav' : 'closed-nav' }`}>
+
+                    <Link to="/eatstagram/" onClick={ toggleMenu }>
+                        <li>
+                            <h3>Explore</h3>
+                        </li>
+                    </Link>
+
+                    <Link to="/eatstagram/create" onClick={ toggleMenu }>
+                        <li>
+                            <h3>Create</h3>
+                        </li>
+                    </Link>
+
+                    <li>
+                        { isLoggedIn ? 
+                        <img src={`${ getProfilePicUrl }`} alt="Nothing" className="user-pic" title={ getUserName } onClick={ signOut }/>
+                        :
+                        <>
+                        <h3 title='Sign-In' onClick={ signIn }>Sign-In</h3>
+                        </>
+                        }
+                    </li>
                 </ul>
 
             </header>

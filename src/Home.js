@@ -7,19 +7,24 @@ import "firebase/firestore";
 import "firebase/storage";
 import tomato from './tomato.png'
 import knife from './knife.png'
+import gsap from 'gsap'
 
 const Home = () => {
 
+    const tl = gsap.timeline();
+    tl.fromTo('.screen', {opacity: 0}, {opacity: 1, duration: 1.2});
+    tl.fromTo('.intro', {y: 0}, {y: "-100%", duration: .5});
+    tl.fromTo('.screen', {opacity: 1}, {opacity: 0, duration: 1});
+    tl.fromTo('.screen', {y: 0}, {y: '-100%', duration: .1});
+    // tl.fromTo('.recipe-card', {opacity: 0}, {opacity: 1, duration: 1})
+
     const [recipes, setRecipes] = useState([]);
-    const [limit, setLimit] = useState(20);
-    const [displayStyle, setDisplayStyle] = useState(true);
-  
 
     function getRecipes() {
   
       var recipesArray = [];
   
-      firebase.firestore().collection('recipes').orderBy("timestamp" , "desc").limit(limit).get().then(function(querySnapshot) {
+      firebase.firestore().collection('recipes').orderBy("timestamp" , "desc").limit(50).get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
           recipesArray.push(doc.data());
       })
@@ -27,36 +32,26 @@ const Home = () => {
           setRecipes(recipesArray);
       });
     };
-  
-    function loadMoreRecipes () {
-      setLimit(limit + 10);
-    }
-  
-    useEffect(() => {
-      getRecipes();
-    }, [limit])
 
     useEffect(() => {
         getRecipes();
-        console.log(recipes)
     }, [])
 
     return (
-        <div className={`Home ${ displayStyle ? 'grid-display' : 'gallery-display' }`}>
-            <div className="filter"></div>
+        <div className="Home">
 
             { recipes.map((recipe, i) => {
-                return <RecipeCard recipe={ recipe } />
+                return <RecipeCard recipe={ recipe } key={ recipe.storageUri }  />
             }) }
 
-            <div className="more-recipes-container" onClick={ loadMoreRecipes } >
+            {/* <div className="more-recipes-container"  >
                 <div className="more-recipes-content" >
                     <div className="knife-container"><img src={ knife } alt=""/></div>
                     <div className="tomato-left tomato"><img src={tomato} alt=""/></div>
                     <div className="more-words">More</div>
                     <div className="tomato-right tomato"><img src={tomato} alt=""/></div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

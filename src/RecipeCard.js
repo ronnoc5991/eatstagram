@@ -3,7 +3,7 @@ import React from 'react';
 const RecipeCard = (props) => {
 
     return (
-        <div className="recipe-card">
+        <div className="recipe-card" >
             <div className="recipe-card-inner">
                 <div className="recipe-card-front">
                     <div className="image-container" >
