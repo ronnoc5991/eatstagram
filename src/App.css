@@ -52,7 +52,7 @@
 header {
   background-color: rgb(251,251,251);
   height: 8vh;
-  box-shadow: 0px 0px 1px 1px black;
+  box-shadow: 0px 0px 5px 1px rgb(63, 63, 63);
   display: flex;
   /* overflow: hidden; */
   position: fixed;
@@ -159,8 +159,8 @@ header a:active {
 }
 
 .user-pic {
-  height: 70%;
-  width: 70%;
+  height: 6vh;
+  width: 6vh;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -169,7 +169,6 @@ header a:active {
 
 
 .Home {
-  background-image: url(./stone.jpg);
   background-image: url(./marble2.jpg);
   background-size: 350px;
   width: 100vw;
@@ -441,7 +440,7 @@ header a:active {
   margin-top: 8vh;
   height: 92vh;
   width: 100vw;
-  background-image: url(./blueprint.jpg);
+  background-color: rgb(25, 126, 84);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -691,7 +690,7 @@ header a:active {
 
 .cropping label img {
   width: 50%;
-  animation-name: dance;
+  animation-name: changeColors;
   animation-duration: 2500ms;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
@@ -701,24 +700,11 @@ header a:active {
   cursor: pointer;
 }
 
-@keyframes dance {
-  0%  { transform: rotate(0deg); 
-        filter: invert(20%) sepia(81%) saturate(7341%) hue-rotate(357deg) brightness(109%) contrast(120%);
-      }
-  15% { transform: translate(-5%, 10%) rotate(15deg);}
-  25% { transform: translate(-5%, 0%) rotate(15deg);}
-  35% { transform: translate(-5%, 10%) rotate(15deg); }
-  50% { transform: rotate(0deg); 
-        filter: invert(91%) sepia(24%) saturate(4479%) hue-rotate(3deg) brightness(109%) contrast(104%);
-      }
-  65% { transform: translate(5%, 10%) rotate(-15deg); }
-  75% { transform: translate(5%, 0%) rotate(-15deg); 
-        filter: invert(8%) sepia(100%) saturate(6851%) hue-rotate(248deg) brightness(102%) contrast(145%);
-      }
-  85% { transform: translate(5%, 10%) rotate(-15deg); }
-  100% { transform: rotate(0deg); 
-        filter: invert(20%) sepia(81%) saturate(7341%) hue-rotate(357deg) brightness(109%) contrast(120%);
-      }
+@keyframes changeColors {
+  0%  {filter: invert(20%) sepia(81%) saturate(7341%) hue-rotate(357deg) brightness(109%) contrast(120%);}
+  50% { filter: invert(91%) sepia(24%) saturate(4479%) hue-rotate(3deg) brightness(109%) contrast(104%);}
+  75% { filter: invert(8%) sepia(100%) saturate(6851%) hue-rotate(248deg) brightness(102%) contrast(145%);}
+  100% { filter: invert(20%) sepia(81%) saturate(7341%) hue-rotate(357deg) brightness(109%) contrast(120%);}
 }
 
 .finished-cropping .crop-container {
@@ -760,7 +746,6 @@ header a:active {
 .image-container-creation img {
   max-width: 246.6px;
   max-height: 246.6px;
-  /* transform: translate3d(0,0,0); */
   -webkit-backface-visibility: hidden; /*Safari */
   backface-visibility: hidden;
 }
@@ -937,6 +922,8 @@ header a:active {
 
   .open-2 {
     background-color: transparent;
+    transform: rotate(-45deg);
+    bottom: 0;
   }
 
   .open-3 {
@@ -947,18 +934,21 @@ header a:active {
   .little-nav {
     position: absolute;
     margin: 0;
-    padding: 0;
-    left: 2vw;
+    padding: 0 1vw;
+    top: 8vh;
+    left: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: all 300ms ease-in-out;
     z-index: -1;
+    background-color: rgba(255, 255, 255, .9);
+    border-bottom-right-radius: 5px;
   }
 
   .open-nav {
-    top: 8vh;
+    left: 0;
   }
 
   .open-nav li {
@@ -971,7 +961,7 @@ header a:active {
   }
 
   .closed-nav {
-    top: -30vh;
+    left: -100%;
   }
 
   .closed-nav li h3 {

@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-import tomato from './tomato.png'
 import * as firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/auth";
@@ -8,14 +7,13 @@ import "firebase/storage";
 import { Link } from 'react-router-dom';
 import { UserContext } from './UserContext'; 
 
-function Nav() {
+const Nav = () => {
 
     const [isLoggedIn, setIsLoggedIn] = useContext(UserContext);
     const [menuOpen, setMenuOpen] = useState(false);
 
 
     function signIn () {
-        console.log(firebase);
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider);
     }
@@ -77,7 +75,7 @@ function Nav() {
 
                     <li>
                         { isLoggedIn ? 
-                        <img src={`${ getProfilePicUrl }`} alt="Nothing" className="user-pic" title={ getUserName } onClick={ signOut }/>
+                        <img src={`${ getProfilePicUrl() }`} alt="Nothing" className="user-pic" title={ getUserName } onClick={ signOut }/>
                         :
                         <>
                         <h3 title='Sign-In' onClick={ signIn }>Sign-In</h3>
@@ -109,7 +107,7 @@ function Nav() {
 
                     <li>
                         { isLoggedIn ? 
-                        <img src={`${ getProfilePicUrl }`} alt="Nothing" className="user-pic" title={ getUserName } onClick={ signOut }/>
+                        <img src={`${ getProfilePicUrl() }`} alt="Nothing" className="user-pic" title={ getUserName } onClick={ signOut }/>
                         :
                         <>
                         <h3 onClick={ signIn }>Sign-In</h3>
