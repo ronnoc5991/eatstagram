@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/eatstagram/static/css/main.a7422647.chunk.css",
-    "main.js": "/eatstagram/static/js/main.3431b41f.chunk.js",
-    "main.js.map": "/eatstagram/static/js/main.3431b41f.chunk.js.map",
+    "main.css": "/eatstagram/static/css/main.c9bbd872.chunk.css",
+    "main.js": "/eatstagram/static/js/main.5c1dc47a.chunk.js",
+    "main.js.map": "/eatstagram/static/js/main.5c1dc47a.chunk.js.map",
     "runtime-main.js": "/eatstagram/static/js/runtime-main.2a5b6642.js",
     "runtime-main.js.map": "/eatstagram/static/js/runtime-main.2a5b6642.js.map",
     "static/css/2.ae08cffe.chunk.css": "/eatstagram/static/css/2.ae08cffe.chunk.css",
-    "static/js/2.90b6ee6e.chunk.js": "/eatstagram/static/js/2.90b6ee6e.chunk.js",
-    "static/js/2.90b6ee6e.chunk.js.map": "/eatstagram/static/js/2.90b6ee6e.chunk.js.map",
+    "static/js/2.191a8ce4.chunk.js": "/eatstagram/static/js/2.191a8ce4.chunk.js",
+    "static/js/2.191a8ce4.chunk.js.map": "/eatstagram/static/js/2.191a8ce4.chunk.js.map",
     "index.html": "/eatstagram/index.html",
-    "precache-manifest.a91f71dffc3f3e9eb5055ccf3b90ac3e.js": "/eatstagram/precache-manifest.a91f71dffc3f3e9eb5055ccf3b90ac3e.js",
+    "precache-manifest.c126f68a1fde0b2976f031aa8f1e791f.js": "/eatstagram/precache-manifest.c126f68a1fde0b2976f031aa8f1e791f.js",
     "service-worker.js": "/eatstagram/service-worker.js",
     "static/css/2.ae08cffe.chunk.css.map": "/eatstagram/static/css/2.ae08cffe.chunk.css.map",
-    "static/css/main.a7422647.chunk.css.map": "/eatstagram/static/css/main.a7422647.chunk.css.map",
-    "static/js/2.90b6ee6e.chunk.js.LICENSE.txt": "/eatstagram/static/js/2.90b6ee6e.chunk.js.LICENSE.txt",
+    "static/css/main.c9bbd872.chunk.css.map": "/eatstagram/static/css/main.c9bbd872.chunk.css.map",
+    "static/js/2.191a8ce4.chunk.js.LICENSE.txt": "/eatstagram/static/js/2.191a8ce4.chunk.js.LICENSE.txt",
     "static/media/App.css": "/eatstagram/static/media/stone.624db029.jpg",
     "static/media/font-awesome.min.css": "/eatstagram/static/media/fontawesome-webfont.fee66e71.woff",
     "static/media/tomato.png": "/eatstagram/static/media/tomato.a57a9c80.png"
@@ -21,8 +21,8 @@
   "entrypoints": [
     "static/js/runtime-main.2a5b6642.js",
     "static/css/2.ae08cffe.chunk.css",
-    "static/js/2.90b6ee6e.chunk.js",
-    "static/css/main.a7422647.chunk.css",
-    "static/js/main.3431b41f.chunk.js"
+    "static/js/2.191a8ce4.chunk.js",
+    "static/css/main.c9bbd872.chunk.css",
+    "static/js/main.5c1dc47a.chunk.js"
   ]
 }
