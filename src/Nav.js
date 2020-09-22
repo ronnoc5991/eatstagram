@@ -53,12 +53,11 @@ function Nav() {
     return (
         <div className="Nav">
             <header>
-                <Link to="/eatstagram/">
                     <div id="logo">
-                        {/* <img src={ tomato } alt="" className="logo-image"/> */}
-                        <span>Eatstagram</span>
+                    <Link to="/eatstagram/">
+                        <h1>Eatstagram</h1>
+                    </Link>
                     </div>
-                </Link>
                 
                 <ul className="big-nav">
 
