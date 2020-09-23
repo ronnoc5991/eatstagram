@@ -162,9 +162,7 @@ header a:active {
 
 
 .Home {
-  background-image: url(./marble2.jpg);
-  background-image: url(./pattern.webp);
-  background-size: 350px;
+  background-image: url(./pattern.jpg);
   background-size: 200px;
   width: 100vw;
   min-height: 100vh;
