@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "07682013aa2b8d5a13778acafc101c49",
+    "revision": "791138d182c5c4a1ca4efdc115d90f01",
     "url": "/eatstagram/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eatstagram/static/css/2.ae08cffe.chunk.css"
   },
   {
-    "revision": "6cfb7670f94d88655432",
-    "url": "/eatstagram/static/css/main.4d52c47c.chunk.css"
+    "revision": "99f834dfe22add088ea7",
+    "url": "/eatstagram/static/css/main.5f4f6e0e.chunk.css"
   },
   {
     "revision": "4e12f9db2ae7a4db2ef5",
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eatstagram/static/js/2.bfa5788d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6cfb7670f94d88655432",
+    "revision": "99f834dfe22add088ea7",
     "url": "/eatstagram/static/js/main.26551427.chunk.js"
   },
   {
@@ -52,7 +52,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eatstagram/static/media/food-3.08252877.jpg"
   },
   {
-    "revision": "5040da4eaa222e9962e4a3ff44a3b41a",
-    "url": "/eatstagram/static/media/marble2.5040da4e.jpg"
+    "revision": "eb43a1301c0a9ec839196e07ddb6f6fb",
+    "url": "/eatstagram/static/media/pattern.eb43a130.webp"
   }
 ]);
