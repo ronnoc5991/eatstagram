@@ -162,8 +162,7 @@ header a:active {
 
 
 .Home {
-  background-image: url(./pattern.jpg);
-  background-size: 200px;
+  background-image: url(./concrete.jpg);
   width: 100vw;
   min-height: 100vh;
   padding: 12vh 0 8vh 0;
@@ -432,8 +431,7 @@ header a:active {
   margin-top: 8vh;
   height: 92vh;
   width: 100vw;
-  background-color: rgb(25, 126, 84);
-  background-color: #0b4e77;
+  background-image: url(./concrete.jpg);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -447,14 +445,14 @@ header a:active {
   width: 300px;
   box-sizing: border-box;
   position: relative;
-  /* overflow: hidden; */
-  color: white;
+  color: #0b4e77;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   font-size: 14px;
   font-style: italic;
+  font-family: 'Julius Sans One', sans-serif;
 }
 
 .recipe-form h2 {
@@ -477,8 +475,7 @@ header a:active {
   width: 90%;
   height: 50px;
   font-size: 20px;
-  font-family: 'Walter Turncoat', cursive;
-  font-weight: bold;
+  font-family: 'Neucha', cursive;
   animation-name: fluctuate;
   animation-duration: 2500ms;
   animation-iteration-count: infinite;
@@ -651,6 +648,7 @@ header a:active {
   width: 280px;
   height: calc(280px * 1.22);
   perspective: 1000px;
+  font-family: 'Neucha', cursive;
 }
 
 .recipe-card-inner-creation {
@@ -929,10 +927,10 @@ header a:active {
     margin: 0;
     padding: 0 1vw;
     top: 8vh;
-    height: 25vh;
+    height: 50vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     transition: all 300ms ease-in-out;
     z-index: -1;
