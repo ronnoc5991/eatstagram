@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     const tl = gsap.timeline();
-    tl.fromTo(introImage, {opacity: 0}, {opacity: 1, duration: 4});
+    tl.fromTo(introImage, {opacity: 0}, {opacity: 1, duration: 2});
     tl.fromTo(introTitle, {opacity: 0}, {opacity: 1, duration: 1});
     tl.fromTo(introBackground, {y: 0}, {y: "-100%", duration: 1});
     tl.fromTo(introImage, {opacity: 1}, {opacity: 0, duration: 1});

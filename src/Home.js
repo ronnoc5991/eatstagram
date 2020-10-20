@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RecipeCard from './RecipeCard'
-import * as firebase from "firebase/app";
-import "firebase/analytics";
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
+import { db } from './firebase'
 
 const Home = () => {
 
@@ -14,7 +10,7 @@ const Home = () => {
   
       var recipesArray = [];
   
-      firebase.firestore().collection('recipes').orderBy("timestamp" , "desc").limit(50).get().then(function(querySnapshot) {
+      db.collection('recipes').orderBy("timestamp" , "desc").limit(50).get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
           recipesArray.push(doc.data());
       })

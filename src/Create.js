@@ -1,15 +1,13 @@
 import React, { useState, useRef, useCallback, useEffect, useContext } from 'react';
-import * as firebase from "firebase/app";
-import "firebase/analytics";
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
 import ReactCrop from 'react-image-crop'
 import "react-image-crop/dist/ReactCrop.css";
 import {base64StringtoFile, extractImageFileExtensionFromBase64} from './ReusableUtils'
 import camera from './camera.png'
 import { UserContext } from './UserContext'; 
 import gsap from 'gsap';
+import * as firebase from "firebase/app";
+
+import app, { db, st, au } from './firebase'
 
 const Create = () => {
 
@@ -24,7 +22,7 @@ const Create = () => {
     const [recipeDescription, setRecipeDescription] = useState('');
     const [step, setStep] = useState(1);
     const [submitted, setSubmitted] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useContext(UserContext);
+    const [isLoggedIn] = useContext(UserContext);
 
     const pixelRatio = 4;
 
@@ -44,15 +42,15 @@ const Create = () => {
     }
 
     function getUserName() {
-        return firebase.auth().currentUser.displayName;
+        return au.currentUser.displayName;
     }
 
     function getProfilePicUrl() {
-        return firebase.auth().currentUser.photoURL;
+        return au.currentUser.photoURL;
     }
 
     function saveRecipeWithImage (title, description, file) {
-        firebase.firestore().collection('recipes').add({
+        db.collection('recipes').add({
             name: getUserName(),
             title: title,
             description: description,
@@ -60,8 +58,8 @@ const Create = () => {
             profilePicUrl: getProfilePicUrl(),
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(function(messageRef) {
-            var filePath = firebase.auth().currentUser.uid + '/' + messageRef.id + '/' + file.name;
-            return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
+            var filePath = au.currentUser.uid + '/' + messageRef.id + '/' + file.name;
+            return st.ref(filePath).put(file).then(function(fileSnapshot) {
                 return fileSnapshot.ref.getDownloadURL().then((url) => {
                     return messageRef.update({
                         imageUrl: url,
@@ -75,7 +73,7 @@ const Create = () => {
     }
 
     function isUserSignedIn() {
-        return !!firebase.auth().currentUser;
+        return !!au.currentUser;
       }
 
     function nextStep (e) {

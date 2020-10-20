@@ -1,11 +1,8 @@
 import React, { useState, useContext } from 'react'
-import * as firebase from "firebase/app";
-import "firebase/analytics";
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
 import { Link } from 'react-router-dom';
-import { UserContext } from './UserContext'; 
+import { UserContext } from './UserContext';
+import * as firebase from "firebase/app";
+import { au } from './firebase'
 
 const Nav = () => {
 
@@ -15,15 +12,15 @@ const Nav = () => {
 
     function signIn () {
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider);
+        au.signInWithPopup(provider);
     }
 
     function signOut () {
-        firebase.auth().signOut();
+        au.signOut();
     }
     
     function initFirebaseAuth () {
-    firebase.auth().onAuthStateChanged(authStateObserver);
+        au.onAuthStateChanged(authStateObserver);
     }
     
     initFirebaseAuth();
@@ -37,11 +34,11 @@ const Nav = () => {
     }
     
     function getProfilePicUrl() {
-    return firebase.auth().currentUser.photoURL;
+        return au.currentUser.photoURL;
     }
 
     function getUserName() {
-    return firebase.auth().currentUser.displayName;
+    return au.currentUser.displayName;
     }
 
     function toggleMenu () {
