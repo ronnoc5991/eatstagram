@@ -1,12 +1,11 @@
 import React, { useRef, useEffect } from 'react';
-import gsap from 'gsap';
 
 const RecipeCard = (props) => {
 
     var recipeCard = useRef(null);
 
     useEffect(() => {
-        const tl = gsap.timeline();
+        const tl = gsap.timeline(); //eslint-disable-line
         tl.fromTo(recipeCard, {opacity: 0, y: 50}, {opacity: 1, y: 0, duration: 1})
     }, [])
 
