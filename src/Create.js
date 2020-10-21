@@ -1,20 +1,17 @@
-import React, { useState, useRef, useCallback, useEffect, useContext } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import ReactCrop from 'react-image-crop'
 import "react-image-crop/dist/ReactCrop.css";
 import {base64StringtoFile, extractImageFileExtensionFromBase64} from './ReusableUtils'
 import camera from './camera.png'
-import { UserContext } from './UserContext'; 
-import gsap from 'gsap';
 import * as firebase from "firebase/app";
-
-import app, { db, st, au } from './firebase'
+import { db, st, au } from './firebase'
 
 const Create = () => {
 
     var card = useRef(null);
 
     useEffect(() => {
-        const tl = gsap.timeline();
+        const tl = gsap.timeline(); //eslint-disable-line
         tl.fromTo(card, {opacity: 0}, {opacity: 1, duration: 1})
     }, [])
 
@@ -22,8 +19,6 @@ const Create = () => {
     const [recipeDescription, setRecipeDescription] = useState('');
     const [step, setStep] = useState(1);
     const [submitted, setSubmitted] = useState(false);
-    const [isLoggedIn] = useContext(UserContext);
-
     const pixelRatio = 4;
 
     function createRecipe (e) {
@@ -261,7 +256,7 @@ function getStepFourText () {
                 </div>
 
 
-                { (step === 4) ? (isLoggedIn ?
+                { (step === 4) ? ((() => isUserSignedIn) ?
                             <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers flasher-1"></div><div className="flashers flasher-2"></div><div className="flashers flasher-3"></div> </> }</div></button> 
                         :   <button className="submit-button-fake" > <div></div></button>) 
                         : ''

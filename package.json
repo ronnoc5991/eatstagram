@@ -9,7 +9,6 @@
     "@testing-library/user-event": "^7.2.1",
     "firebase": "^7.15.5",
     "font-awesome": "^4.7.0",
-    "gsap": "^3.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-image-crop": "^8.6.4",

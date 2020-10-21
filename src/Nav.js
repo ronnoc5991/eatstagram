@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { UserContext } from './UserContext';
 import * as firebase from "firebase/app";
 import { au } from './firebase'
 
 const Nav = () => {
 
-    const [isLoggedIn, setIsLoggedIn] = useContext(UserContext);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
+    
 
     function signIn () {
         var provider = new firebase.auth.GoogleAuthProvider();
@@ -72,7 +72,7 @@ const Nav = () => {
 
                     <li>
                         { isLoggedIn ? 
-                        <img src={`${ getProfilePicUrl() }`} alt="Nothing" className="user-pic" title={ getUserName } onClick={ signOut }/>
+                        <img src={`${ getProfilePicUrl() }`} alt="Nothing" className="user-pic" title={ `${getUserName}` } onClick={ signOut }/>
                         :
                         <>
                         <h3 title='Sign-In' onClick={ signIn }>Sign-In</h3>

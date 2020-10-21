@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import RecipeCard from './RecipeCard'
 import { db } from './firebase'
+import fridge from './fridge.png'
 
 const Home = () => {
 
     const [recipes, setRecipes] = useState([]);
+    const [limit, setLimit] = useState(25);
 
     function getRecipes() {
   
       var recipesArray = [];
   
-      db.collection('recipes').orderBy("timestamp" , "desc").limit(50).get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
+      db.collection('recipes').orderBy("timestamp" , "desc").limit(limit).get()
+      .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
           recipesArray.push(doc.data());
-      })
+        })
       }).then (() => {
           setRecipes(recipesArray);
       });
@@ -21,23 +24,22 @@ const Home = () => {
 
     useEffect(() => {
         getRecipes();
-    }, [])
+    }, )
+
+    function getMoreRecipes () {
+        setLimit(limit + 25);
+    }
 
     return (
         <div className="Home">
 
-            { recipes.map((recipe, i) => {
+            { recipes.map((recipe) => {
                 return <RecipeCard recipe={ recipe } key={ recipe.storageUri } />
             }) }
 
-            {/* <div className="more-recipes-container"  >
-                <div className="more-recipes-content" >
-                    <div className="knife-container"><img src={ knife } alt=""/></div>
-                    <div className="tomato-left tomato"><img src={tomato} alt=""/></div>
-                    <div className="more-words">More</div>
-                    <div className="tomato-right tomato"><img src={tomato} alt=""/></div>
-                </div>
-            </div> */}
+            <div className="more-recipes" onClick={ getMoreRecipes } >
+                <img src={ fridge } alt=""/>
+            </div>
         </div>
     )
 }

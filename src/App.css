@@ -165,7 +165,7 @@ header a:active {
   background-image: url(./concrete.jpg);
   width: 100vw;
   min-height: 100vh;
-  padding: 12vh 0 8vh 0;
+  padding: 12vh 0 25vh 0;
   margin: auto;
   overflow: hidden;
   display: grid;
@@ -176,120 +176,31 @@ header a:active {
 
 /* ------------------------------------------ Load More Recipes Button ------------------------------------------ */
 
-.more-recipes-container {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
-  margin: 5vw auto 3vw auto;
+.more-recipes {
+  position: absolute;
+  width: 15vmin;
+  height: 15vmin;
   cursor: pointer;
-  opacity: 0%;
-}
-
-.more-recipes-content {
-  margin: auto;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: rgba(255, 255, 255, .8);
-  box-shadow: 0px 0px 3px 3px #6b6b6b;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-}
-
-.more-words {
-  position: absolute;
-  top: 50%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  color: transparent;
-  transition: color 200ms linear;
-  font-style: italic;
-  font-size: 24px;
+  transform: translate(-50%, -2.5vh);
 }
 
-.more-recipes-content:hover .more-words {
-  color: black;
+.more-recipes img {
+  height: 100%;
 }
 
-.more-recipes-content:hover .tomato-left {
-  transform: translate(0%, -60%) translateX(-30px) rotate(-90deg);
+.more-recipes:hover {
+  animation: shakeFridge 500ms infinite;
 }
 
-.more-recipes-content:hover .tomato-right {
-  transform: translate(-200%, -60%) translateX(30px) rotate(90deg);
+@keyframes shakeFridge {
+  0% { transform: translate(-50%, -2.5vh) rotate(0deg) }
+  25% { transform: translate(-50%, -2.5vh) rotate(10deg) }
+  50% { transform: translate(-50%, -2.5vh) rotate(0deg) }
+  75% { transform: translate(-50%, -2.5vh) rotate(-10deg) }
+  100% { transform: translate(-50%, -2.5vh) rotate(0deg) }
 }
-
-.tomato {
-  transform-origin: bottom;
-  width: 75px;
-  height: 150px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-100%, -50%);
-  overflow: hidden;
-  transition: all 300ms ease-in;
-  filter: invert(21%) sepia(57%) saturate(5714%) hue-rotate(2deg) brightness(99%) contrast(101%);
-}
-
-.tomato-left {
-  z-index: 4;
-}
-
-.tomato-left img {
-  height: 80%;
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  transform: translate(-50%, -50%);
-}
-
-.tomato-right {
-  z-index: 6;
-}
-
-.tomato-right img {
-  height: 80%;
-  position: absolute;
-  top: 50%;
-  left: -80%;
-  transform: translate(-3%, -50%);
-}
-
-.knife-container {
-  position: absolute;
-  height: 150px;
-  width: 150px;
-  transform: translate(-50%, -50%);
-  transition: all 100ms linear;
-  pointer-events: none;
-  transform-origin: bottom;
-  z-index: 5;
-}
-
-.knife-container::before {
-  content: '';
-  background-color: #d5d5d7;
-  height: 72px;
-  width: 51px;
-  position: absolute;
-  top: 19%;
-  left: 45%;
-  transform: rotate(45deg);
-}
-
-.more-recipes-content:hover .knife-container {
-  transform: translate(-50%, 20%) rotate(60deg);
-}
-
-.knife-container img {
-  position: relative;
-  height: 150px;
-}
-
 
 /* ------------------------------------------ Home View Recipe Cards ------------------------------------------ */
 

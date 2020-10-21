@@ -4,8 +4,6 @@ import './App.css';
 import Nav from './Nav';
 import Home from './Home';
 import Create from './Create';
-import { UserProvider } from './UserContext';
-import gsap from 'gsap';
 
 function App() {
 
@@ -14,7 +12,7 @@ function App() {
   var introTitle = useRef(null);
 
   useEffect(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline(); //eslint-disable-line
     tl.fromTo(introImage, {opacity: 0}, {opacity: 1, duration: 2});
     tl.fromTo(introTitle, {opacity: 0}, {opacity: 1, duration: 1});
     tl.fromTo(introBackground, {y: 0}, {y: "-100%", duration: 1});
@@ -23,7 +21,6 @@ function App() {
   }, [])
 
   return (
-    <UserProvider>
       <Router>
         <div className="App">
 
@@ -35,14 +32,12 @@ function App() {
             </div>
 
           <Nav/>
-          {/* <Intro/> */}
           <Switch>
             <Route path="/eatstagram/" exact component={ Home } />
             <Route path="/eatstagram/create" exact component={ Create } />
           </Switch>
         </div>
       </Router>
-    </UserProvider>
   );
 }
 
