@@ -24,10 +24,11 @@ const Home = () => {
 
     useEffect(() => {
         getRecipes();
-    }, )
+    }, []) //eslint-disable-line
 
     function getMoreRecipes () {
         setLimit(limit + 25);
+        getRecipes();
     }
 
     return (
