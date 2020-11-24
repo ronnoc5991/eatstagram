@@ -2,7 +2,7 @@ Hello!  Thank you for visiting this repo!
 
 This is EATSTAGRAM!
 
-This is a personal project that solved a real world problem of mine while providing me with an opportunity to tie some newly learned technologies together.
+This is a personal project that solved a problem of mine while providing me with an opportunity to tie some newly learned technologies together.
 
 
 WHY DOES EATSTAGRAM EXIST?
