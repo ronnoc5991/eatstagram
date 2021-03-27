@@ -1,14 +1,15 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import ReactCrop from 'react-image-crop'
 import "react-image-crop/dist/ReactCrop.css";
-import {base64StringtoFile, extractImageFileExtensionFromBase64} from './ReusableUtils'
-import camera from './camera.png'
+import './Create.css';
+import {base64StringtoFile, extractImageFileExtensionFromBase64} from '../../ReusableUtils'
+import camera from '../../assets/image/camera.png';
 import * as firebase from "firebase/app";
-import { db, st, au } from './firebase'
+import { db, st, au } from '../../firebase'
 
 const Create = () => {
 
-    var card = useRef(null);
+    let card = useRef(null);
 
     useEffect(() => {
         const tl = gsap.timeline(); //eslint-disable-line
@@ -53,7 +54,7 @@ const Create = () => {
             profilePicUrl: getProfilePicUrl(),
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(function(messageRef) {
-            var filePath = au.currentUser.uid + '/' + messageRef.id + '/' + file.name;
+            let filePath = au.currentUser.uid + '/' + messageRef.id + '/' + file.name;
             return st.ref(filePath).put(file).then(function(fileSnapshot) {
                 return fileSnapshot.ref.getDownloadURL().then((url) => {
                     return messageRef.update({
@@ -181,19 +182,17 @@ function getStepFourText () {
 }
 // --------------------------------------------------------------------------------------------------------------------------------------------
 
-
     return (
         <div className="Create">
-            
             <form className="recipe-form" >
 
 
-                <h2> 
+                <span className="step-description"> 
                     {(step === 1) && 'Upload a photo of your dish'} 
                     {(step === 2) && 'Give your recipe a name...'} 
                     {(step === 3) && 'Give some details...'} 
                     {(step === 4) && getStepFourText()} 
-                </h2>
+                </span>
 
 
                 <div className="draft-recipe-card-container">
@@ -221,6 +220,8 @@ function getStepFourText () {
                                     <canvas
                                         ref={previewCanvasRef}
                                         style={{
+                                            width: '100%',
+                                            height: '100%',
                                             maxHeight: "246.4px",    
                                             maxWidth: "246.4px",
                                         }}
@@ -256,21 +257,26 @@ function getStepFourText () {
                 </div>
 
 
-                { (step === 4) ? ((() => isUserSignedIn) ?
+                {/* { (step === 4) ? ((() => isUserSignedIn) ?
                             <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers flasher-1"></div><div className="flashers flasher-2"></div><div className="flashers flasher-3"></div> </> }</div></button> 
                         :   <button className="submit-button-fake" > <div></div></button>) 
                         : ''
-                    }
+                    } */}
 
 
 
-                <div className="step-counter"> {`${ step } / 4`} </div> 
 
 
                 <div className="form-button-container">
                     { previousStepPossible() ? <div className="previous-step-button"><i className="fa fa-arrow-left fa-2x" onClick={ previousStep }></i></div> : ''}
+                    { (step === 4) ? ((() => isUserSignedIn) ?
+                            <button onClick={ submitted ? '' : createRecipe } className="submit-button" ><div className="submit-button-inner"> { submitted ? '' : <> <div className="flashers flasher-1"></div><div className="flashers flasher-2"></div><div className="flashers flasher-3"></div> </> }</div></button> 
+                            :   <button className="submit-button-fake" > <div></div></button>) 
+                            : ''
+                        }
                     { nextStepPossible() ? <div className="next-step-button" ><i className="fa fa-arrow-right fa-2x" onClick={ nextStep }></i></div> : '' }
                 </div>
+                <div className="step-counter"> {`${ step } / 4`} </div> 
             </form>
 
 

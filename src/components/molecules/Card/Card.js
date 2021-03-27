@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from 'react';
+import './Card.css';
 
-const RecipeCard = (props) => {
+const Card = (props) => {
 
-    var recipeCard = useRef(null);
+    let recipeCard = useRef(null);
 
     useEffect(() => {
         const tl = gsap.timeline(); //eslint-disable-line
@@ -33,4 +34,4 @@ const RecipeCard = (props) => {
     )
 }
 
-export default RecipeCard;
+export default Card;

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import RecipeCard from './RecipeCard'
-import { db } from './firebase'
-import fridge from './fridge.png'
+import './Home.css';
+import Card from '../../components/molecules/Card/Card'
+import { db } from '../../firebase'
+import fridge from '../../assets/image/fridge.png'
 
 const Home = () => {
 
@@ -10,7 +11,7 @@ const Home = () => {
 
     function getRecipes() {
   
-      var recipesArray = [];
+      let recipesArray = [];
   
       db.collection('recipes').orderBy("timestamp" , "desc").limit(limit).get()
       .then((querySnapshot) => {
@@ -35,7 +36,7 @@ const Home = () => {
         <div className="Home">
 
             { recipes.map((recipe) => {
-                return <RecipeCard recipe={ recipe } key={ recipe.storageUri } />
+                return <Card recipe={ recipe } key={ recipe.storageUri } />
             }) }
 
             <div className="more-recipes" onClick={ getMoreRecipes } >

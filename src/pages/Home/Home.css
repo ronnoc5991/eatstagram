@@ -1,0 +1,47 @@
+.Home {
+  width: 100vw;
+  min-height: 100vh;
+  padding: calc(72px + 5vh) 0 25vh 0;
+  margin: auto;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-gap: 25px;
+  justify-content: center;
+}
+
+.more-recipes {
+  position: absolute;
+  width: 15vmin;
+  height: 15vmin;
+  cursor: pointer;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -2.5vh);
+}
+
+.more-recipes img {
+  height: 100%;
+}
+
+.more-recipes:hover {
+  animation: shakeFridge 500ms infinite;
+}
+
+@keyframes shakeFridge {
+  0% {
+    transform: translate(-50%, -2.5vh) rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -2.5vh) rotate(10deg);
+  }
+  50% {
+    transform: translate(-50%, -2.5vh) rotate(0deg);
+  }
+  75% {
+    transform: translate(-50%, -2.5vh) rotate(-10deg);
+  }
+  100% {
+    transform: translate(-50%, -2.5vh) rotate(0deg);
+  }
+}
